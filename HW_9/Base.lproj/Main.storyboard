@@ -60,7 +60,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gOf-Nl-o3G" secondAttribute="trailing" symbolic="YES" id="y7u-C3-7de"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="UserDefaults" selectedImage="person.badge.plus" catalog="system" id="rll-JY-k7w">
+                    <tabBarItem key="tabBarItem" title="UserDefaults" image="person.badge.plus" catalog="system" selectedImage="person.badge.plus" id="rll-JY-k7w">
                         <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
                 </viewController>
@@ -102,6 +102,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dB4-jN-iHy">
                                 <rect key="frame" x="10" y="44" width="394" height="689"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="WRT-gg-u4Y">
+                                    <rect key="frame" x="0.0" y="133.00000034679067" width="394" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="84" id="8jN-tJ-FLt">
                                         <rect key="frame" x="0.0" y="24.5" width="394" height="84"/>
@@ -192,7 +197,7 @@
                             <constraint firstItem="dB4-jN-iHy" firstAttribute="leading" secondItem="9Sy-h3-JdX" secondAttribute="leading" constant="10" id="sbR-5p-gNW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="ToDo Realm" selectedImage="tortoise.fill" catalog="system" id="3p3-QP-07F"/>
+                    <tabBarItem key="tabBarItem" title="ToDo Realm" image="tortoise.fill" catalog="system" selectedImage="tortoise.fill" id="3p3-QP-07F"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfo-Jq-q8t" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,6 +214,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nzx-97-Mwn">
                                 <rect key="frame" x="10" y="0.0" width="394" height="733"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="eGq-00-6cd">
+                                    <rect key="frame" x="0.0" y="133.00000034679067" width="394" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="84" id="ya8-Z4-0Tt">
                                         <rect key="frame" x="0.0" y="24.5" width="394" height="84"/>
@@ -299,7 +309,7 @@
                             <constraint firstItem="eqe-Mh-gMF" firstAttribute="centerX" secondItem="Nzx-97-Mwn" secondAttribute="centerX" id="rbf-qi-gQB"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="ToDo CoreData" selectedImage="tortoise" catalog="system" id="PGJ-ou-uQW"/>
+                    <tabBarItem key="tabBarItem" title="ToDo CoreData" image="tortoise" catalog="system" selectedImage="tortoise" id="PGJ-ou-uQW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6B-3k-T2a" sceneMemberID="firstResponder"/>
             </objects>
