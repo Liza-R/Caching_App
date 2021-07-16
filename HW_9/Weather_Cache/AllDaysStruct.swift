@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class DaysInfo{
     struct All_Day_Info: Decodable{
@@ -44,6 +45,14 @@ class DaysInfo{
     struct Weather_5: Decodable{
         var icon: String,
         description: String
+    }
+    
+    struct forBaseTableAlam{
+        var temper_Alam: String,
+            icon_Alam: UIImage,
+            descript_Alam: String,
+            data_Alam: String,
+            time_Alam: String
     }
 }
 

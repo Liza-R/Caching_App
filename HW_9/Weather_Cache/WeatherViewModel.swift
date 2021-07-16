@@ -12,7 +12,7 @@ import Alamofire
 
 protocol uploadWeatherAlamofire{
     func uploadToday(todayAlam: DaysInfo.All_Day_Info, description: String, image: UIImage)
-    func uploadFiveDays(todayData: String, allData_: [String], massForTable_: [forBaseTableAlam], cod: String, allWeatherInfo_:  [[forBaseTableAlam]])
+    func uploadFiveDays(todayData: String, allData_: [String], massForTable_: [DaysInfo.forBaseTableAlam], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]])
 }
 
 class ViewModelAlamofire{
@@ -21,7 +21,7 @@ class ViewModelAlamofire{
                 five_days_Alam: [DaysInfo.All_Five_Days_Info] = [],
                dayForTable_F: [String] = [],
                allData_F: [String] = [],
-               massForTable_F: [forBaseTableAlam] = []
+               massForTable_F: [DaysInfo.forBaseTableAlam] = []
     
     var weatherDelegateAlam: uploadWeatherAlamofire?
 
@@ -99,7 +99,7 @@ class ViewModelAlamofire{
                         switch response.result {
                             case .success(let responseData):
                                 iconsAlam.append(UIImage(data: responseData!, scale:1) ?? .checkmark)
-                                let d: forBaseTableAlam = forBaseTableAlam(temper_Alam: temp_[i], icon_Alam: iconsAlam[i], descript_Alam: descript[i], data_Alam: data[i], time_Alam: time[i])
+                                let d: DaysInfo.forBaseTableAlam = DaysInfo.forBaseTableAlam(temper_Alam: temp_[i], icon_Alam: iconsAlam[i], descript_Alam: descript[i], data_Alam: data[i], time_Alam: time[i])
                                 self.massForTable_F.append(d)
                                 self.allData_F.append(d.data_Alam)
                                 
@@ -111,7 +111,7 @@ class ViewModelAlamofire{
                                     self.dayForTable_F = self.dayForTable_F.filter { $0 != "Not Found" }
                                     self.dayForTable_F = self.dayForTable_F.filter { $0 != result_Al }
                                     
-                                    var allWeatherInfo_Alam: [[forBaseTableAlam]] = [[]]
+                                    var allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]]
                                     
                                     for _ in 0...self.dayForTable_F.count - 2{
                                         allWeatherInfo_Alam.append([])

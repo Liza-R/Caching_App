@@ -21,12 +21,12 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var feels_like_Label_Alam: UILabel!
     @IBOutlet weak var weather_Table_Alamofire: UITableView!
     
-    var massForTableAlam: [forBaseTableAlam] = [],
+    var massForTableAlam: [DaysInfo.forBaseTableAlam] = [],
         codFiveDays = "",
         tableRowDataAlam: String = "",
         dayForTableAlam: [String] = [],
         allDataAlam: [String] = [],
-        allWeatherInfo_Alam: [[forBaseTableAlam]] = [[]]
+        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: uploadWeatherAlamofire{
 
-    func uploadFiveDays(todayData: String, allData_: [String], massForTable_: [forBaseTableAlam], cod: String, allWeatherInfo_:  [[forBaseTableAlam]]) {
+    func uploadFiveDays(todayData: String, allData_: [String], massForTable_: [DaysInfo.forBaseTableAlam], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]]) {
         allWeatherInfo_Alam = allWeatherInfo_
         codFiveDays = cod
         allDataAlam = allData_

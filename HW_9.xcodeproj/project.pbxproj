@@ -19,7 +19,6 @@
 		203A4ED0269F154D00ACE97C /* TDCoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4ECF269F154D00ACE97C /* TDCoreDataViewController.swift */; };
 		203A4ED4269F15B500ACE97C /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4ED3269F15B500ACE97C /* Links.swift */; };
 		203A4ED6269F15DC00ACE97C /* AllDaysStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4ED5269F15DC00ACE97C /* AllDaysStruct.swift */; };
-		203A4ED8269F15FC00ACE97C /* TableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4ED7269F15FC00ACE97C /* TableStruct.swift */; };
 		203A4EDA269F161200ACE97C /* TodayLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4ED9269F161200ACE97C /* TodayLoader.swift */; };
 		203A4EDC269F163D00ACE97C /* DaysLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4EDB269F163D00ACE97C /* DaysLoader.swift */; };
 		203A4EDE269F16F200ACE97C /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4EDD269F16F200ACE97C /* WeatherViewController.swift */; };
@@ -66,7 +65,6 @@
 		203A4ECF269F154D00ACE97C /* TDCoreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDCoreDataViewController.swift; sourceTree = "<group>"; };
 		203A4ED3269F15B500ACE97C /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		203A4ED5269F15DC00ACE97C /* AllDaysStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDaysStruct.swift; sourceTree = "<group>"; };
-		203A4ED7269F15FC00ACE97C /* TableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableStruct.swift; sourceTree = "<group>"; };
 		203A4ED9269F161200ACE97C /* TodayLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLoader.swift; sourceTree = "<group>"; };
 		203A4EDB269F163D00ACE97C /* DaysLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysLoader.swift; sourceTree = "<group>"; };
 		203A4EDD269F16F200ACE97C /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -186,16 +184,15 @@
 		203A4ECB269F14F000ACE97C /* Weather_Cache */ = {
 			isa = PBXGroup;
 			children = (
+				203A4EE5269F17F300ACE97C /* Alerts.swift */,
 				203A4ED3269F15B500ACE97C /* Links.swift */,
 				203A4ED5269F15DC00ACE97C /* AllDaysStruct.swift */,
-				203A4ED7269F15FC00ACE97C /* TableStruct.swift */,
 				203A4ED9269F161200ACE97C /* TodayLoader.swift */,
 				203A4EDB269F163D00ACE97C /* DaysLoader.swift */,
 				203A4EDD269F16F200ACE97C /* WeatherViewController.swift */,
 				203A4EDF269F175800ACE97C /* WeatherViewModel.swift */,
 				203A4EE1269F178900ACE97C /* WeatherAlamofireTableViewCell.swift */,
 				203A4EE3269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift */,
-				203A4EE5269F17F300ACE97C /* Alerts.swift */,
 			);
 			path = Weather_Cache;
 			sourceTree = "<group>";
@@ -407,7 +404,6 @@
 				203A4E9D269F13B000ACE97C /* ViewController.swift in Sources */,
 				203A4EE2269F178900ACE97C /* WeatherAlamofireTableViewCell.swift in Sources */,
 				203A4EE0269F175800ACE97C /* WeatherViewModel.swift in Sources */,
-				203A4ED8269F15FC00ACE97C /* TableStruct.swift in Sources */,
 				203A4EDA269F161200ACE97C /* TodayLoader.swift in Sources */,
 				203A4ED4269F15B500ACE97C /* Links.swift in Sources */,
 				203A4E99269F13B000ACE97C /* AppDelegate.swift in Sources */,
