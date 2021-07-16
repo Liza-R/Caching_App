@@ -8,7 +8,6 @@
 import Foundation
 
 class DaysInfo{
-
     struct All_Day_Info: Decodable{
         var weather: [Weather?],
         main: Main?,

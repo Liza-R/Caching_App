@@ -7,9 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftSpinner
-
-var errorCoding = false
 
 class TodayFiveDaysLoader{
      func loadFiveDaysAlamofire(completion: @escaping ([DaysInfo.All_Five_Days_Info]) -> Void){

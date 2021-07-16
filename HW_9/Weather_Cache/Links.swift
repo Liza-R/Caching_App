@@ -13,7 +13,6 @@ var url_icon_upload = "http://openweathermap.org/img/wn/PICTURENAME@2x.png",
     
 
 class changeURL{
-    
     func changeTodayURLAlam(cityName: String){
         url_today_uploadAlam = "https://api.openweathermap.org/data/2.5/weather?q=\(cityNameAlam)&appid=f786f3131537f8ee067b397b6f7753be"
     }

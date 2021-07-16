@@ -1,8 +1,9 @@
 //
-//  WeatherViewModel.swift
-//  HW_9
+//  ViewModelBase.swift
+//  HW_7_
 //
-//  Created by Elizaveta Rogozhina on 14.07.2021.
+//  Created by Elizaveta Rogozhina on 10.05.2021.
+//  Copyright © 2021 Lio Rin. All rights reserved.
 //
 
 import Foundation
