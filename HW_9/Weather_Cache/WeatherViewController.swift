@@ -26,7 +26,8 @@ class WeatherViewController: UIViewController {
         tableRowDataAlam: String = "",
         dayForTableAlam: [String] = [],
         allDataAlam: [String] = [],
-        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]]
+        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]],
+        daysNum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,19 +61,23 @@ class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController: uploadWeatherAlamofire{
+    func uploadFiveDays(daysNum: Int, dataForCollectionAlam: [[DaysInfo.forBaseTableAlam]], cod: String,
+                        dataForTable: [String]) {
+        self.daysNum = daysNum
+        self.codFiveDays = cod
+        self.allWeatherInfo_Alam = dataForCollectionAlam
+        self.dayForTableAlam = dataForTable
+        weather_Table_Alamofire.reloadData()
+    }
+    
 
-    func uploadFiveDays(todayData: String, allData_: [String], massForTable_: [DaysInfo.forBaseTableAlam], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]]) {
-        allWeatherInfo_Alam = allWeatherInfo_
+    /*func uploadFiveDays(allData_: [String], massForTable_: [DaysInfo.forBaseTableAlam], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]]){
+       allWeatherInfo_Alam = allWeatherInfo_
         codFiveDays = cod
         allDataAlam = allData_
         massForTableAlam = massForTable_
-        
-        var set = Set<String>()
-        dayForTableAlam = allDataAlam.filter{ set.insert($0).inserted }
-        dayForTableAlam = dayForTableAlam.filter { $0 != "Not Found" }
-        dayForTableAlam = dayForTableAlam.filter { $0 != todayData }
         weather_Table_Alamofire.reloadData()
-    }
+    }*/
     
     func uploadToday(todayAlam: DaysInfo.All_Day_Info, description: String, image: UIImage) {
         let date = NSDate(timeIntervalSince1970: TimeInterval(todayAlam.dt)),
@@ -95,7 +100,7 @@ extension WeatherViewController: uploadWeatherAlamofire{
 extension WeatherViewController: UITableViewDataSource{
 
     func tableView(_ tableView_Alam: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dayForTableAlam.count
+        return self.daysNum
     }
 
     func tableView(_ tableView_Alam: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

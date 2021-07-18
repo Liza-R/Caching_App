@@ -9,8 +9,6 @@
 import UIKit
 import Alamofire
 
-private var dayCounter = 0
-
 class WeatherAlamofireTableViewCell: UITableViewCell{
     
     override func awakeFromNib() {

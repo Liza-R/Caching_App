@@ -12,7 +12,8 @@ import Alamofire
 
 protocol uploadWeatherAlamofire{
     func uploadToday(todayAlam: DaysInfo.All_Day_Info, description: String, image: UIImage)
-    func uploadFiveDays(todayData: String, allData_: [String], massForTable_: [DaysInfo.forBaseTableAlam], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]])
+    func uploadFiveDays(daysNum: Int, dataForCollectionAlam: [[DaysInfo.forBaseTableAlam]], cod: String,
+                        dataForTable: [String])
 }
 
 class ViewModelAlamofire{
@@ -88,47 +89,45 @@ class ViewModelAlamofire{
                             time.append(denechek?[1] ?? "Not Found")
                             for (_, w) in (j?.weather.enumerated())!{
                                 descript.append("\(w!.description)")
-                                iconLinkAlam.append("\(w!.icon)")
+                                iconLinkAlam.append(w!.icon)
+                            }
+                            for (k, ic) in iconLinkAlam.enumerated(){
+                                let url_icon = url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(ic)")
+                                AF.request(URL(string: url_icon)!, method: .get).response{ response in
+                                    switch response.result{
+                                        case .success(let responseData):
+                                        iconsAlam.append(UIImage(data: responseData!, scale:1) ?? .checkmark)
+                                        
+                                        if iconsAlam.count == temp_.count{
+                                            var allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]]
+                                            let d: DaysInfo.forBaseTableAlam = DaysInfo.forBaseTableAlam(temper_Alam: temp_[k], icon_Alam: iconsAlam[k], descript_Alam: descript[k], data_Alam: data[k], time_Alam: time[k])
+                                            self.massForTable_F.append(d)
+                                            self.allData_F.append(d.data_Alam)
+                                            
+                                            var set = Set<String>()
+                                            self.dayForTable_F = self.allData_F.filter{ set.insert($0).inserted }
+                                            self.dayForTable_F = self.dayForTable_F.filter { $0 != result_Al }
+
+                                            for _ in 0...self.dayForTable_F.count - 2{
+                                                allWeatherInfo_Alam.append([])
+                                            }
+                                            for (y, u) in self.dayForTable_F.enumerated(){
+                                                for (_, j) in self.allData_F.enumerated(){
+                                                    if u == j{
+                                                        allWeatherInfo_Alam[y].append(d)
+                                                    }
+                                                }
+                                            }
+                                            print(allWeatherInfo_Alam)
+                                            self.weatherDelegateAlam?.uploadFiveDays(daysNum: self.dayForTable_F.count, dataForCollectionAlam: allWeatherInfo_Alam, cod: cod, dataForTable: self.dayForTable_F)
+                                        }
+                                    case .failure(let error):
+                                        print("error--->",error)
+                                }
                             }
                         }
                     }
-                }
-                for (i, j) in iconLinkAlam.enumerated(){
-                    let url_icon = url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(j)")
-                    AF.request(URL(string: url_icon)!, method: .get).response{ response in
-                        switch response.result {
-                            case .success(let responseData):
-                                iconsAlam.append(UIImage(data: responseData!, scale:1) ?? .checkmark)
-                                let d: DaysInfo.forBaseTableAlam = DaysInfo.forBaseTableAlam(temper_Alam: temp_[i], icon_Alam: iconsAlam[i], descript_Alam: descript[i], data_Alam: data[i], time_Alam: time[i])
-                                self.massForTable_F.append(d)
-                                self.allData_F.append(d.data_Alam)
-                                
-                                if i == iconLinkAlam.count - 1{
-                                    
-                                    var set = Set<String>()
-                                    
-                                    self.dayForTable_F = self.allData_F.filter{ set.insert($0).inserted }
-                                    self.dayForTable_F = self.dayForTable_F.filter { $0 != "Not Found" }
-                                    self.dayForTable_F = self.dayForTable_F.filter { $0 != result_Al }
-                                    
-                                    var allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]]
-                                    
-                                    for _ in 0...self.dayForTable_F.count - 2{
-                                        allWeatherInfo_Alam.append([])
-                                    }
-                                    
-                                    for (y, u) in self.dayForTable_F.enumerated(){
-                                        for (i, j) in self.allData_F.enumerated(){
-                                            if u == j{
-                                                allWeatherInfo_Alam[y].append(self.massForTable_F[i])
-                                            }
-                                        }
-                                    }
-                                    self.weatherDelegateAlam?.uploadFiveDays(todayData: result_Al, allData_: self.allData_F, massForTable_: self.massForTable_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam)
-                                }
-                            case .failure(let error):
-                                print("error--->",error)
-                        }
+                
                     }
                 }
             }
