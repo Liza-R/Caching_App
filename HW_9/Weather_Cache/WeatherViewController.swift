@@ -1,10 +1,3 @@
-//
-//  WeatherViewController.swift
-//  HW_9
-//
-//  Created by Elizaveta Rogozhina on 14.07.2021.
-//
-
 import UIKit
 
 var cityNameAlam: String = "" // needed for search city
@@ -26,8 +19,7 @@ class WeatherViewController: UIViewController {
         tableRowDataAlam: String = "",
         dayForTableAlam: [String] = [],
         allDataAlam: [String] = [],
-        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]],
-        daysNum = 0
+        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +53,7 @@ class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController: uploadWeatherAlamofire{
+
     func uploadFiveDays(todayData: String, allData_: [String], massForTable_: [DaysInfo.forBaseTableAlam], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]]) {
         allWeatherInfo_Alam = allWeatherInfo_
         codFiveDays = cod
@@ -95,7 +88,7 @@ extension WeatherViewController: uploadWeatherAlamofire{
 extension WeatherViewController: UITableViewDataSource{
 
     func tableView(_ tableView_Alam: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.daysNum
+        return dayForTableAlam.count
     }
 
     func tableView(_ tableView_Alam: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,15 +102,5 @@ extension WeatherViewController: UITableViewDataSource{
         //day cell
         cell_Alam.day_Label_Alam.text = "\(tableRowDataAlam) \(cityNameAlam)"
         return cell_Alam
-    }
-}
-
-extension UIAlertController {
-    func pruneNegativeWidthConstraints() {
-        for subView in self.view.subviews {
-            for constraint in subView.constraints where constraint.debugDescription.contains("width == - 16") {
-                subView.removeConstraint(constraint)
-            }
-        }
     }
 }

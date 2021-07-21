@@ -1,13 +1,9 @@
-//
-//  WeatherAlamofireTableViewCell.swift
-//  HW_9
-//
-//  Created by Elizaveta Rogozhina on 14.07.2021.
-//
-
 
 import UIKit
 import Alamofire
+
+private var dayCounter = 0
+
 
 class WeatherAlamofireTableViewCell: UITableViewCell{
     
@@ -45,4 +41,3 @@ class WeatherAlamofireTableViewCell: UITableViewCell{
 }
 
 extension WeatherAlamofireTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate{}
-
