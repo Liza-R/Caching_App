@@ -22,6 +22,7 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createSpinner().startSpinner()
         cityNameAlam = searchTF.text!
         let viewModelAlam = ViewModelAlamofire()
         viewModelAlam.weatherDelegateAlam = self

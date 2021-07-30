@@ -10,6 +10,7 @@ import Alamofire
 
 class TodayFiveDaysLoader{
      func loadFiveDaysAlamofire(completion: @escaping ([DaysInfo.All_Five_Days_Info]) -> Void){
+        
         AF.request(URL(string: url_fiveDays_uploadAlam)!)
         .validate()
             .responseDecodable(of: DaysInfo.All_Five_Days_Info.self) { (response) in

@@ -28,6 +28,7 @@ class WeatherAlamofireTableViewCell: UITableViewCell{
         cell.descriptLabelAlam.text = "\(options.descript_Alam)"
         cell.timeLabelAlam.text = options.time_Alam
         cell.iconImageAlam.image = options.icon_Alam
+        createSpinner().stopSpinner()
         return cell
 }
     
