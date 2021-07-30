@@ -14,8 +14,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var feels_like_Label_Alam: UILabel!
     @IBOutlet weak var weather_Table_Alamofire: UITableView!
     
-    var massForTableAlam: [DaysInfo.forBaseTableAlam] = [],
-        codFiveDays = "",
+    var codFiveDays = "",
         tableRowDataAlam: String = "",
         dayForTableAlam: [String] = [],
         allDataAlam: [String] = [],
@@ -54,15 +53,11 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: uploadWeatherAlamofire{
 
-    func uploadFiveDays(todayData: String, allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]]) {
+    func uploadFiveDays(todayData: String, allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]], daysForTable: [String]) {
         allWeatherInfo_Alam = allWeatherInfo_
         codFiveDays = cod
         allDataAlam = allData_
-        
-        var set = Set<String>()
-        dayForTableAlam = allDataAlam.filter{ set.insert($0).inserted }
-        dayForTableAlam = dayForTableAlam.filter { $0 != "Not Found" }
-        dayForTableAlam = dayForTableAlam.filter { $0 != todayData }
+        dayForTableAlam = daysForTable
         weather_Table_Alamofire.reloadData()
     }
     

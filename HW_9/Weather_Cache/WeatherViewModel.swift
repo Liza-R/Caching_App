@@ -12,7 +12,7 @@ import Alamofire
 
 protocol uploadWeatherAlamofire{
     func uploadToday(todayAlam: DaysInfo.All_Day_Info, description: String, image: UIImage)
-    func uploadFiveDays(todayData: String, allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]])
+    func uploadFiveDays(todayData: String, allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]], daysForTable: [String])
 }
 
 class ViewModelAlamofire{
@@ -27,7 +27,6 @@ class ViewModelAlamofire{
     }
     
     func uploadToday(){
-        
         TodayLoader().loadTodayAlamofire { today in
             self.today_Alam = today
             DispatchQueue.main.async {
@@ -64,13 +63,11 @@ class ViewModelAlamofire{
             time: [String] = [],
             cod: String = "",
             
-            
             dayForTable_F: [String] = [],
             allData_F: [String] = []
   
         let date = Date(),
         formatter = DateFormatter()
-        
         formatter.dateFormat = "YYYY-MM-dd"
         
         let result_Al = formatter.string(from: date)
@@ -120,7 +117,7 @@ class ViewModelAlamofire{
                                             }
                                         }
                                     }
-                                    self.weatherDelegateAlam?.uploadFiveDays(todayData: result_Al, allData_: allData_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam)
+                                    self.weatherDelegateAlam?.uploadFiveDays(todayData: result_Al, allData_: allData_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam, daysForTable: dayForTable_F)
                                 }
                             case .failure(let error):
                                 print("error--->",error)
