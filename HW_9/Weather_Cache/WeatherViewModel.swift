@@ -12,16 +12,12 @@ import Alamofire
 
 protocol uploadWeatherAlamofire{
     func uploadToday(todayAlam: DaysInfo.All_Day_Info, description: String, image: UIImage)
-    func uploadFiveDays(todayData: String, allData_: [String], massForTable_: [DaysInfo.forBaseTableAlam], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]])
+    func uploadFiveDays(todayData: String, allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]])
 }
 
 class ViewModelAlamofire{
-    
     private var today_Alam: [DaysInfo.All_Day_Info] = [],
-                five_days_Alam: [DaysInfo.All_Five_Days_Info] = [],
-               dayForTable_F: [String] = [],
-               allData_F: [String] = [],
-               massForTable_F: [DaysInfo.forBaseTableAlam] = []
+                five_days_Alam: [DaysInfo.All_Five_Days_Info] = []
     
     var weatherDelegateAlam: uploadWeatherAlamofire?
 
@@ -31,6 +27,7 @@ class ViewModelAlamofire{
     }
     
     func uploadToday(){
+        
         TodayLoader().loadTodayAlamofire { today in
             self.today_Alam = today
             DispatchQueue.main.async {
@@ -59,14 +56,17 @@ class ViewModelAlamofire{
     }
     
     func uploadDays(){
-        
         var temp_: [String] = [],
             descript: [String] = [],
             iconLinkAlam: [String] = [],
             iconsAlam: [UIImage] = [],
             data: [String] = [],
             time: [String] = [],
-            cod: String = ""
+            cod: String = "",
+            
+            
+            dayForTable_F: [String] = [],
+            allData_F: [String] = []
   
         let date = Date(),
         formatter = DateFormatter()
@@ -99,32 +99,28 @@ class ViewModelAlamofire{
                         switch response.result {
                             case .success(let responseData):
                                 iconsAlam.append(UIImage(data: responseData!, scale:1) ?? .checkmark)
-                                let d: DaysInfo.forBaseTableAlam = DaysInfo.forBaseTableAlam(temper_Alam: temp_[i], icon_Alam: iconsAlam[i], descript_Alam: descript[i], data_Alam: data[i], time_Alam: time[i])
-                                self.massForTable_F.append(d)
-                                self.allData_F.append(d.data_Alam)
-                                
-                                if i == iconLinkAlam.count - 1{
-                                    
+                                var moving = false
+                                if iconLinkAlam.count - 1 == i{
+                                    moving = true
+                                }
+                                if moving == true{
+                                    allData_F = data
                                     var set = Set<String>()
-                                    
-                                    self.dayForTable_F = self.allData_F.filter{ set.insert($0).inserted }
-                                    self.dayForTable_F = self.dayForTable_F.filter { $0 != "Not Found" }
-                                    self.dayForTable_F = self.dayForTable_F.filter { $0 != result_Al }
-                                    
+                                    dayForTable_F = allData_F.filter{ set.insert($0).inserted }
+                                    dayForTable_F = dayForTable_F.filter { $0 != "Not Found" }
+                                    dayForTable_F = dayForTable_F.filter { $0 != result_Al }
                                     var allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]]
-                                    
-                                    for _ in 0...self.dayForTable_F.count - 2{
+                                    for _ in 0...dayForTable_F.count - 2{
                                         allWeatherInfo_Alam.append([])
                                     }
-                                    
-                                    for (y, u) in self.dayForTable_F.enumerated(){
-                                        for (i, j) in self.allData_F.enumerated(){
+                                    for (y, u) in dayForTable_F.enumerated(){
+                                        for (i, j) in allData_F.enumerated(){
                                             if u == j{
-                                                allWeatherInfo_Alam[y].append(self.massForTable_F[i])
+                                                allWeatherInfo_Alam[y].append(DaysInfo.forBaseTableAlam(temper_Alam: temp_[i], icon_Alam: iconsAlam[i], descript_Alam: descript[i], data_Alam: data[i], time_Alam: time[i]))
                                             }
                                         }
                                     }
-                                    self.weatherDelegateAlam?.uploadFiveDays(todayData: result_Al, allData_: self.allData_F, massForTable_: self.massForTable_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam)
+                                    self.weatherDelegateAlam?.uploadFiveDays(todayData: result_Al, allData_: allData_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam)
                                 }
                             case .failure(let error):
                                 print("error--->",error)
