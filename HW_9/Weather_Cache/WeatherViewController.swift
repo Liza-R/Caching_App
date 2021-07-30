@@ -54,11 +54,10 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: uploadWeatherAlamofire{
 
-    func uploadFiveDays(todayData: String, allData_: [String], /*massForTable_: [DaysInfo.forBaseTableAlam],*/ cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]]) {
+    func uploadFiveDays(todayData: String, allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]]) {
         allWeatherInfo_Alam = allWeatherInfo_
         codFiveDays = cod
         allDataAlam = allData_
-        //massForTableAlam = massForTable_
         
         var set = Set<String>()
         dayForTableAlam = allDataAlam.filter{ set.insert($0).inserted }

@@ -54,12 +54,5 @@ class DaysInfo{
             data_Alam: String,
             time_Alam: String
     }
-    struct forBaseTableAlamMass{
-        var temper_Alam: [String],
-            icon_Alam: [UIImage],
-            descript_Alam: [String],
-            data_Alam: [String],
-            time_Alam: [String]
-    }
 }
 
