@@ -112,7 +112,7 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="realmCell" rowHeight="84" id="8jN-tJ-FLt">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="realmCell" rowHeight="84" id="8jN-tJ-FLt" customClass="RealmToDoTableViewCell" customModule="HW_9" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="394" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8jN-tJ-FLt" id="uk0-rg-FVw">
@@ -133,6 +133,9 @@
                                                             <integer key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="checkingButton:" destination="8jN-tJ-FLt" eventType="touchUpInside" id="9yz-Kc-o8M"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FcD-0E-KM4">
                                                     <rect key="frame" x="334" y="21" width="40" height="40"/>
@@ -148,6 +151,9 @@
                                                             <integer key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="removingButton:" destination="8jN-tJ-FLt" eventType="touchUpInside" id="0FZ-tf-WdV"/>
+                                                    </connections>
                                                 </button>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K3s-wa-JPw">
                                                     <rect key="frame" x="70" y="24" width="254" height="34"/>
@@ -166,6 +172,11 @@
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="leading" secondItem="pdQ-lC-GKf" secondAttribute="trailing" constant="10" id="z3J-jQ-wiW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkButton" destination="pdQ-lC-GKf" id="uRi-vd-4Gp"/>
+                                            <outlet property="deleteButton" destination="FcD-0E-KM4" id="m2M-TS-QC1"/>
+                                            <outlet property="eventTF" destination="K3s-wa-JPw" id="UT8-Vt-wUe"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -188,6 +199,9 @@
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addingButton:" destination="QVN-Po-rtn" eventType="touchUpInside" id="I2n-TZ-Itc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Sy-h3-JdX"/>
@@ -202,6 +216,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="ToDo Realm" image="tortoise.fill" catalog="system" selectedImage="tortoise.fill" id="3p3-QP-07F"/>
+                    <connections>
+                        <outlet property="todoTable" destination="dB4-jN-iHy" id="7pD-MF-r84"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfo-Jq-q8t" sceneMemberID="firstResponder"/>
             </objects>
