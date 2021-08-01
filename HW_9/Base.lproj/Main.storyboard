@@ -63,6 +63,10 @@
                     <tabBarItem key="tabBarItem" title="UserDefaults" image="person.badge.plus" catalog="system" selectedImage="person.badge.plus" id="rll-JY-k7w">
                         <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="lastNameTF" destination="W1M-H3-Ce9" id="8Nl-Wf-Vbg"/>
+                        <outlet property="nameTF" destination="uT0-hL-4qn" id="S20-Nk-uw6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

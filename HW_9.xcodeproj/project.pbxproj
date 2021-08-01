@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20053E2E26B423920025AEC1 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E2D26B423920025AEC1 /* Spinner.swift */; };
+		20053E3026B6C7670025AEC1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E2F26B6C7670025AEC1 /* UserDefaults.swift */; };
 		203A4E99269F13B000ACE97C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E98269F13B000ACE97C /* AppDelegate.swift */; };
 		203A4E9B269F13B000ACE97C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E9A269F13B000ACE97C /* SceneDelegate.swift */; };
 		203A4E9D269F13B000ACE97C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E9C269F13B000ACE97C /* ViewController.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		20053E2D26B423920025AEC1 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		20053E2F26B6C7670025AEC1 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		203A4E95269F13B000ACE97C /* HW_9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW_9.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203A4E98269F13B000ACE97C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		203A4E9A269F13B000ACE97C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				203A4E9C269F13B000ACE97C /* ViewController.swift */,
+				20053E2F26B6C7670025AEC1 /* UserDefaults.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				203A4EE6269F17F300ACE97C /* Alerts.swift in Sources */,
 				203A4E9D269F13B000ACE97C /* ViewController.swift in Sources */,
 				203A4EE2269F178900ACE97C /* WeatherAlamofireTableViewCell.swift in Sources */,
+				20053E3026B6C7670025AEC1 /* UserDefaults.swift in Sources */,
 				20053E2E26B423920025AEC1 /* Spinner.swift in Sources */,
 				203A4EE0269F175800ACE97C /* WeatherViewModel.swift in Sources */,
 				203A4EDA269F161200ACE97C /* TodayLoader.swift in Sources */,
