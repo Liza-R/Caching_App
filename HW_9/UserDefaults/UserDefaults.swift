@@ -14,10 +14,10 @@ class UserDef{
     
     var userName: String?{
         set { UserDefaults.standard.set(newValue, forKey: keyUserName) }
-        get { return UserDefaults.standard.string(forKey: keyUserName)}
+        get { return UserDefaults.standard.string(forKey: keyUserName) }
     }
     var userLastName: String?{
         set { UserDefaults.standard.set(newValue, forKey: keyUserLastName) }
-        get { return UserDefaults.standard.string(forKey: keyUserLastName)}
+        get { return UserDefaults.standard.string(forKey: keyUserLastName) }
     }
 }

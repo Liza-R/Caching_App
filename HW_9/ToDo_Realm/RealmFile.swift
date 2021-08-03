@@ -9,10 +9,7 @@ import Foundation
 import RealmSwift
 
 class ToDoInfo: Object{
-    @objc dynamic var taskName = "",
-                      check = false,
-                      delite = false,
-                      qtTasks = 0
+    @objc dynamic var qtTasks = 0
 }
 
 class RealmSaving{
@@ -20,11 +17,9 @@ class RealmSaving{
     private let realm = try! Realm()
     
     func safekeeping(){
-        let task = ToDoInfo()
-        task.taskName = taskDescript
-        task.check = checking
-        task.delite = deliting
-        task.qtTasks = qtTasks
+        //let task = ToDoInfo()
+        //task.taskName = task_
+        //task.qtTasks = qtTasks
         try! realm.write{
             realm.add(task)
         }
