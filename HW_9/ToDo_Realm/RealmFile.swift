@@ -11,23 +11,23 @@ import RealmSwift
 class ToDoInfo: Object{
     @objc dynamic var qtTasks = 0
 }
+private let realm = try! Realm()
 
 class RealmSaving{
     static let safekeepingRealm = RealmSaving()
-    private let realm = try! Realm()
-    
+    private let task = ToDoInfo()
     func safekeeping(){
-        //let task = ToDoInfo()
-        //task.taskName = task_
-        //task.qtTasks = qtTasks
+        if task.qtTasks < qt{
+            task.qtTasks = qt
+        }
         try! realm.write{
+            task.qtTasks += 1
             realm.add(task)
+            forUpload()
         }
-        
+    }
+    func forUpload(){
         let allTasks = realm.objects(ToDoInfo.self)
-        for task in allTasks{
-            print(task)
-        }
-        
+        qt = allTasks.last?.qtTasks ?? 0
     }
 }

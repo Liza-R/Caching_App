@@ -8,48 +8,42 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
-let task = ToDoInfo()
 
+var qt = 0
 class TDRealmViewController: UIViewController {
 
     @IBOutlet weak var todoTable: UITableView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var labelForQT: UILabel!
-    
-    let disposeBag = DisposeBag()
-    //private
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        //RealmSaving.safekeepingRealm.safekeeping()
+        RealmSaving.safekeepingRealm.forUpload()
         self.todoTable.rowHeight = 100
         self.todoTable.dataSource = self
         self.todoTable.reloadData()
-        self.labelForQT.text = "\(task.qtTasks)"
-        
-        self.addButton.rx.tap
-            .subscribe(onNext: {_ in
-                task.qtTasks += 1
-                self.todoTable.reloadData()
-                self.labelForQT.text = "\(task.qtTasks)"
-        }).disposed(by: disposeBag)
-        //RealmSaving.safekeepingRealm.safekeeping()
+        self.labelForQT.text = "\(qt)"
+    }
+    
+    @IBAction func addingButton(_ sender: Any) {
+        RealmSaving.safekeepingRealm.safekeeping()
+        self.todoTable.reloadData()
+        self.labelForQT.text = "\(qt)"
     }
 }
 
 extension TDRealmViewController: UITableViewDataSource{
 
     func tableView(_ tableView_Alam: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return task.qtTasks
+        return qt
     }
     
     func tableView(_ tableView_Alam: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell_Alam = tableView_Alam.dequeueReusableCell(withIdentifier: "realmCell", for: indexPath) as! RealmToDoTableViewCell
-        
-        
-        
+
         return cell_Alam
     }
 }
