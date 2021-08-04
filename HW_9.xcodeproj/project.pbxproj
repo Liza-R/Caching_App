@@ -11,6 +11,7 @@
 		20053E3026B6C7670025AEC1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E2F26B6C7670025AEC1 /* UserDefaults.swift */; };
 		20053E3226B6D5010025AEC1 /* RealmFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3126B6D5010025AEC1 /* RealmFile.swift */; };
 		20053E3426B6D6420025AEC1 /* RealmToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3326B6D6420025AEC1 /* RealmToDoTableViewCell.swift */; };
+		20053E3626BAC5450025AEC1 /* CellActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3526BAC5450025AEC1 /* CellActions.swift */; };
 		203A4E99269F13B000ACE97C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E98269F13B000ACE97C /* AppDelegate.swift */; };
 		203A4E9B269F13B000ACE97C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E9A269F13B000ACE97C /* SceneDelegate.swift */; };
 		203A4E9D269F13B000ACE97C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E9C269F13B000ACE97C /* ViewController.swift */; };
@@ -55,6 +56,7 @@
 		20053E2F26B6C7670025AEC1 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		20053E3126B6D5010025AEC1 /* RealmFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFile.swift; sourceTree = "<group>"; };
 		20053E3326B6D6420025AEC1 /* RealmToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmToDoTableViewCell.swift; sourceTree = "<group>"; };
+		20053E3526BAC5450025AEC1 /* CellActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellActions.swift; sourceTree = "<group>"; };
 		203A4E95269F13B000ACE97C /* HW_9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW_9.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203A4E98269F13B000ACE97C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		203A4E9A269F13B000ACE97C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				203A4ECD269F153B00ACE97C /* TDRealmViewController.swift */,
 				20053E3126B6D5010025AEC1 /* RealmFile.swift */,
 				20053E3326B6D6420025AEC1 /* RealmToDoTableViewCell.swift */,
+				20053E3526BAC5450025AEC1 /* CellActions.swift */,
 			);
 			path = ToDo_Realm;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 			files = (
 				203A4EE4269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift in Sources */,
 				203A4EE6269F17F300ACE97C /* Alerts.swift in Sources */,
+				20053E3626BAC5450025AEC1 /* CellActions.swift in Sources */,
 				203A4E9D269F13B000ACE97C /* ViewController.swift in Sources */,
 				203A4EE2269F178900ACE97C /* WeatherAlamofireTableViewCell.swift in Sources */,
 				20053E3026B6C7670025AEC1 /* UserDefaults.swift in Sources */,
