@@ -24,11 +24,12 @@ class TDRealmViewController: UIViewController {
     }
     
     @IBAction func addingButton(_ sender: Any) {
-        
         self.todoTable.performBatchUpdates({
             RealmSaving.safekeepingRealm.safekeeping()
             self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        },completion: nil)
+        }) { (inform) in
+            self.todoTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
         self.labelForQT.text = "\(qt) task(-s)"
     }
 }
