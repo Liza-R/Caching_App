@@ -6,12 +6,9 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import RealmSwift
-
 
 var qt = 0
+
 class TDRealmViewController: UIViewController {
 
     @IBOutlet weak var todoTable: UITableView!
@@ -21,16 +18,18 @@ class TDRealmViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         RealmSaving.safekeepingRealm.forUpload()
-        self.todoTable.rowHeight = 100
         self.todoTable.dataSource = self
         self.todoTable.reloadData()
-        self.labelForQT.text = "\(qt)"
+        self.labelForQT.text = "\(qt) task(-s)"
     }
     
     @IBAction func addingButton(_ sender: Any) {
-        RealmSaving.safekeepingRealm.safekeeping()
-        self.todoTable.reloadData()
-        self.labelForQT.text = "\(qt)"
+        
+        self.todoTable.performBatchUpdates({
+            RealmSaving.safekeepingRealm.safekeeping()
+            self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        },completion: nil)
+        self.labelForQT.text = "\(qt) task(-s)"
     }
 }
 

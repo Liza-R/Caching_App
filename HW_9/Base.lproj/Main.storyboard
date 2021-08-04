@@ -107,20 +107,20 @@
                                 <rect key="frame" x="10" y="44" width="394" height="689"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="WRT-gg-u4Y">
-                                    <rect key="frame" x="0.0" y="133.00000034679067" width="394" height="44"/>
+                                    <rect key="frame" x="0.0" y="115.50000034679067" width="394" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="realmCell" rowHeight="84" id="8jN-tJ-FLt" customClass="RealmToDoTableViewCell" customModule="HW_9" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="394" height="84"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="realmCell" id="8jN-tJ-FLt" customClass="RealmToDoTableViewCell" customModule="HW_9" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="394" height="66.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8jN-tJ-FLt" id="uk0-rg-FVw">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K3s-wa-JPw">
-                                                    <rect key="frame" x="20" y="16" width="354" height="52"/>
+                                                    <rect key="frame" x="20" y="16" width="354" height="34.5"/>
                                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -163,8 +163,8 @@
                                     <action selector="addingButton:" destination="QVN-Po-rtn" eventType="touchUpInside" id="pv7-MG-7En"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFW-lx-vXy">
-                                <rect key="frame" x="307" y="763" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFW-lx-vXy">
+                                <rect key="frame" x="287" y="762.5" width="41.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -173,10 +173,11 @@
                         <viewLayoutGuide key="safeArea" id="9Sy-h3-JdX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lFW-lx-vXy" firstAttribute="top" secondItem="dB4-jN-iHy" secondAttribute="bottom" constant="30" id="7il-eE-i9Z"/>
+                            <constraint firstItem="9Sy-h3-JdX" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lFW-lx-vXy" secondAttribute="trailing" constant="37" id="9xk-r4-Djg"/>
                             <constraint firstItem="dB4-jN-iHy" firstAttribute="top" secondItem="9Sy-h3-JdX" secondAttribute="top" id="Q2Y-ov-QBv"/>
                             <constraint firstItem="9Sy-h3-JdX" firstAttribute="bottom" secondItem="dB4-jN-iHy" secondAttribute="bottom" constant="80" id="Slo-mt-vH6"/>
-                            <constraint firstItem="lFW-lx-vXy" firstAttribute="leading" secondItem="4kC-IM-wZA" secondAttribute="trailing" constant="70" id="d6w-75-N5M"/>
+                            <constraint firstItem="lFW-lx-vXy" firstAttribute="centerY" secondItem="4kC-IM-wZA" secondAttribute="centerY" id="Y0N-Kv-lIT"/>
+                            <constraint firstItem="lFW-lx-vXy" firstAttribute="leading" secondItem="4kC-IM-wZA" secondAttribute="trailing" constant="50" id="d6w-75-N5M"/>
                             <constraint firstItem="9Sy-h3-JdX" firstAttribute="trailing" secondItem="dB4-jN-iHy" secondAttribute="trailing" constant="10" id="egn-gJ-0dA"/>
                             <constraint firstItem="4kC-IM-wZA" firstAttribute="top" secondItem="dB4-jN-iHy" secondAttribute="bottom" constant="10" id="fhi-lR-NOK"/>
                             <constraint firstItem="4kC-IM-wZA" firstAttribute="centerX" secondItem="dB4-jN-iHy" secondAttribute="centerX" id="gX6-eb-o9F"/>
