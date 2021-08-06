@@ -8,8 +8,8 @@
 import Foundation
 
 class CellActions{
-    let actions = CellActions()
+    static let actions = CellActions()
     func removingCell(indPath: IndexPath){
-        
+        tasks.remove(at: indPath.row)
     }
 }

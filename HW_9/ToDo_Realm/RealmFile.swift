@@ -8,26 +8,12 @@
 import Foundation
 import RealmSwift
 
-class ToDoInfo: Object{
-    @objc dynamic var qtTasks = 0
+class Task: Object{
+    @objc dynamic var taskNote = "",
+                      taskCompl = false
 }
-private let realm = try! Realm()
 
-class RealmSaving{
-    static let safekeepingRealm = RealmSaving()
-    private let task = ToDoInfo()
-    func safekeeping(){
-        if task.qtTasks < qt{
-            task.qtTasks = qt
-        }
-        try! realm.write{
-            task.qtTasks += 1
-            realm.add(task)
-            forUpload()
-        }
-    }
-    func forUpload(){
-        let allTasks = realm.objects(ToDoInfo.self)
-        qt = allTasks.last?.qtTasks ?? 0
-    }
+class TaskComplite: Object{
+    @objc dynamic var taskName = ""
+                  var allTasks = List<Task>()
 }

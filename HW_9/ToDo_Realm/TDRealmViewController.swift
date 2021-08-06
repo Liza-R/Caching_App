@@ -6,8 +6,7 @@
 //
 
 import UIKit
-
-var qt = 0
+import RealmSwift
 
 class TDRealmViewController: UIViewController {
 
@@ -15,36 +14,64 @@ class TDRealmViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var labelForQT: UILabel!
 
+    var selectedList: TaskComplite!,
+        currentTasks: Results<Task>!,
+        completedTasks: Results<Task>!
+    //var currentCreateAction:UIAlertAction!
+    
+    var isEditingMode = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        RealmSaving.safekeepingRealm.forUpload()
+        //RealmSaving.safekeepingRealm.forUpload()
         self.todoTable.dataSource = self
         self.todoTable.delegate = self
         self.todoTable.reloadData()
-        self.labelForQT.text = "\(qt) task(-s)"
+        loadingTasks()
+       // self.labelForQT.text = "\(qt) task(-s)"
+    }
+    
+    func loadingTasks(){
+        completedTasks = self.selectedList.allTasks.filter("isCompleted = true")
+        currentTasks = self.selectedList.allTasks.filter("isCompleted = false")
+        self.todoTable.reloadData()
     }
     
     @IBAction func addingButton(_ sender: Any) {
         self.todoTable.performBatchUpdates({
-            RealmSaving.safekeepingRealm.safekeeping()
+            //RealmSaving.safekeepingRealm.safekeepingQT()
             self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }) { (inform) in
             self.todoTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
-        self.labelForQT.text = "\(qt) task(-s)"
+        //self.labelForQT.text = "\(qt) task(-s)"
     }
 }
 
 extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return qt
+        if section == 0{
+            return currentTasks.count
+        }
+        return completedTasks.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0{
+            return "Current tasks"
+        }
+        return "Complited tasks"
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
             self.todoTable.performBatchUpdates({
-                //self.model.CellActions().actions.removingCell(indPath: indexPath)
+            CellActions.actions.removingCell(indPath: indexPath)
                 self.todoTable.deleteRows(at: [indexPath], with: .automatic)
             }, completion: nil)
             print("Removing \(indexPath.row)")
@@ -61,7 +88,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
         let swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
             
             self.todoTable.performBatchUpdates({
-                //self.model.CellActions().actions.removingCell(indPath: indexPath)
+            CellActions.actions.removingCell(indPath: indexPath)
                 self.todoTable.deleteRows(at: [indexPath], with: .automatic)
             }, completion: nil)
             print("Checking \(indexPath.row)")
@@ -77,9 +104,17 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell_Alam = tableView.dequeueReusableCell(withIdentifier: "realmCell", for: indexPath) as! RealmToDoTableViewCell
-
+       
+        var task: Task!
+        if indexPath.section == 0{
+            task = currentTasks[indexPath.row]
+        }
+        else{
+            task = completedTasks[indexPath.row]
+        }
+        
+        cell_Alam.eventTF?.text = task.taskNote
+        
         return cell_Alam
     }
-    
-    
 }
