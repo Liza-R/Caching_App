@@ -28,8 +28,8 @@ class TDRealmViewController: UIViewController {
     
     func loadingTasks(){
         let model = realm.objects(Task.self)
-        completedTasks = model.filter("taskComplited = 1")
         currentTasks = model.filter("taskComplited = 0")
+        completedTasks = model.filter("taskComplited = 1")
         self.todoTable.reloadData()
     }
     
@@ -77,12 +77,13 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
-            self.todoTable.performBatchUpdates({
-            CellActions.actions.removingCell(indPath: indexPath)
-                self.todoTable.deleteRows(at: [indexPath], with: .automatic)
-            }, completion: nil)
-            print("Removing \(indexPath.row)")
+        let model = realm.objects(Task.self),
+            item = model[indexPath.row],
+            swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
+            try! realm.write({
+                realm.delete(item)
+                self.loadingTasks()
+            })
         }
         swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
 
@@ -93,14 +94,14 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
-        let swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
-            
-            self.todoTable.performBatchUpdates({
-            CellActions.actions.removingCell(indPath: indexPath)
-                self.todoTable.deleteRows(at: [indexPath], with: .automatic)
-            }, completion: nil)
-            print("Checking \(indexPath.row)")
-        }
+        let model = realm.objects(Task.self),
+            item = model[indexPath.row],
+            swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
+                try! realm.write({
+                    item.taskComplited = !item.taskComplited
+                    self.loadingTasks()
+                })
+            }
         swipeCheck.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
      
         let swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
