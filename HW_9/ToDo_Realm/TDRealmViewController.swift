@@ -8,43 +8,42 @@
 import UIKit
 import RealmSwift
 
+let realm = try! Realm()
+
 class TDRealmViewController: UIViewController {
 
     @IBOutlet weak var todoTable: UITableView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var labelForQT: UILabel!
 
-    var selectedList: TaskComplite!,
-        currentTasks: Results<Task>!,
-        completedTasks: Results<Task>!
-    //var currentCreateAction:UIAlertAction!
-    
-    var isEditingMode = false
-    
+    var allTasksList: TaskComplite?,
+        currentTasks: Results<Task>?,
+        completedTasks: Results<Task>?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        //RealmSaving.safekeepingRealm.forUpload()
         self.todoTable.dataSource = self
         self.todoTable.delegate = self
         self.todoTable.reloadData()
         loadingTasks()
-       // self.labelForQT.text = "\(qt) task(-s)"
     }
     
     func loadingTasks(){
-        completedTasks = self.selectedList.allTasks.filter("isCompleted = true")
-        currentTasks = self.selectedList.allTasks.filter("isCompleted = false")
+        if self.allTasksList?.allTasks == nil{
+            completedTasks = nil
+            currentTasks = nil
+        }else{
+            completedTasks = self.allTasksList?.allTasks.filter("taskComplited = true")
+            currentTasks = self.allTasksList?.allTasks.filter("taskComplited = false")
+        }
         self.todoTable.reloadData()
     }
     
     @IBAction func addingButton(_ sender: Any) {
         self.todoTable.performBatchUpdates({
-            //RealmSaving.safekeepingRealm.safekeepingQT()
             self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }) { (inform) in
             self.todoTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
-        //self.labelForQT.text = "\(qt) task(-s)"
     }
 }
 
@@ -55,10 +54,16 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
-            return currentTasks.count
+        
+        switch section {
+        case 0:
+            return currentTasks?.count ?? 0
+        case 1:
+            return completedTasks?.count ?? 0
+        default:
+            print("error -> tableView's sections")
+            return 0
         }
-        return completedTasks.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -107,10 +112,10 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
        
         var task: Task!
         if indexPath.section == 0{
-            task = currentTasks[indexPath.row]
+            task = currentTasks?[indexPath.row]
         }
         else{
-            task = completedTasks[indexPath.row]
+            task = completedTasks?[indexPath.row]
         }
         
         cell_Alam.eventTF?.text = task.taskNote

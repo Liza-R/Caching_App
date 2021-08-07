@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GGY-Wx-GK9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QVN-Po-rtn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -163,21 +163,12 @@
                                     <action selector="addingButton:" destination="QVN-Po-rtn" eventType="touchUpInside" id="pv7-MG-7En"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFW-lx-vXy">
-                                <rect key="frame" x="287" y="762.5" width="41.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Sy-h3-JdX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="9Sy-h3-JdX" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lFW-lx-vXy" secondAttribute="trailing" constant="37" id="9xk-r4-Djg"/>
                             <constraint firstItem="dB4-jN-iHy" firstAttribute="top" secondItem="9Sy-h3-JdX" secondAttribute="top" id="Q2Y-ov-QBv"/>
                             <constraint firstItem="9Sy-h3-JdX" firstAttribute="bottom" secondItem="dB4-jN-iHy" secondAttribute="bottom" constant="80" id="Slo-mt-vH6"/>
-                            <constraint firstItem="lFW-lx-vXy" firstAttribute="centerY" secondItem="4kC-IM-wZA" secondAttribute="centerY" id="Y0N-Kv-lIT"/>
-                            <constraint firstItem="lFW-lx-vXy" firstAttribute="leading" secondItem="4kC-IM-wZA" secondAttribute="trailing" constant="50" id="d6w-75-N5M"/>
                             <constraint firstItem="9Sy-h3-JdX" firstAttribute="trailing" secondItem="dB4-jN-iHy" secondAttribute="trailing" constant="10" id="egn-gJ-0dA"/>
                             <constraint firstItem="4kC-IM-wZA" firstAttribute="top" secondItem="dB4-jN-iHy" secondAttribute="bottom" constant="10" id="fhi-lR-NOK"/>
                             <constraint firstItem="4kC-IM-wZA" firstAttribute="centerX" secondItem="dB4-jN-iHy" secondAttribute="centerX" id="gX6-eb-o9F"/>
@@ -187,7 +178,6 @@
                     <tabBarItem key="tabBarItem" title="ToDo Realm" image="tortoise.fill" catalog="system" selectedImage="tortoise.fill" id="3p3-QP-07F"/>
                     <connections>
                         <outlet property="addButton" destination="4kC-IM-wZA" id="Swd-B2-H20"/>
-                        <outlet property="labelForQT" destination="lFW-lx-vXy" id="NCf-PY-72q"/>
                         <outlet property="todoTable" destination="dB4-jN-iHy" id="7pD-MF-r84"/>
                     </connections>
                 </viewController>

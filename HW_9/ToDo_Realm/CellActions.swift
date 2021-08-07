@@ -10,6 +10,6 @@ import Foundation
 class CellActions{
     static let actions = CellActions()
     func removingCell(indPath: IndexPath){
-        tasks.remove(at: indPath.row)
+        //tasks.remove(at: indPath.row)
     }
 }

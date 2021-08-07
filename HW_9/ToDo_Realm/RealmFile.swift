@@ -10,7 +10,7 @@ import RealmSwift
 
 class Task: Object{
     @objc dynamic var taskNote = "",
-                      taskCompl = false
+                      taskComplited = false
 }
 
 class TaskComplite: Object{
