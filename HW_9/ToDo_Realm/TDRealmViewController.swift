@@ -77,6 +77,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
         let model = realm.objects(Task.self),
             item = model[indexPath.row],
             swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
@@ -86,28 +87,38 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
             })
         }
         swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
-
         let swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
         swipes.performsFirstActionWithFullSwipe = true
-        
         return swipes
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
+        
         let model = realm.objects(Task.self),
             item = model[indexPath.row],
-            swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
-                try! realm.write({
-                    item.taskComplited = !item.taskComplited
-                    self.loadingTasks()
-                })
-            }
-        swipeCheck.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-     
-        let swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
-        swipes.performsFirstActionWithFullSwipe = true
-        
-        return swipes
+            swipes: UISwipeActionsConfiguration?
+        if item.taskComplited == false{
+            let swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
+                    try! realm.write({
+                        item.taskComplited = !item.taskComplited
+                        self.loadingTasks()
+                    })
+                }
+            swipeCheck.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+            swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
+            swipes?.performsFirstActionWithFullSwipe = true
+        }else{
+            let swipeReturn = UIContextualAction(style: .normal, title: "Return"){ (action, view, success) in
+                    try! realm.write({
+                        item.taskComplited = !item.taskComplited
+                        self.loadingTasks()
+                    })
+                }
+            swipeReturn.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+            swipes = UISwipeActionsConfiguration(actions: [swipeReturn])
+            swipes?.performsFirstActionWithFullSwipe = true
+        }
+            return swipes
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
