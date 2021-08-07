@@ -15,8 +15,7 @@ class TDRealmViewController: UIViewController {
     @IBOutlet weak var todoTable: UITableView!
     @IBOutlet weak var addButton: UIButton!
 
-    var allTasksList: TaskComplite?,
-        currentTasks: Results<Task>?,
+    var currentTasks: Results<Task>?,
         completedTasks: Results<Task>?
 
     override func viewDidLoad() {
@@ -28,19 +27,24 @@ class TDRealmViewController: UIViewController {
     }
     
     func loadingTasks(){
-        if self.allTasksList?.allTasks == nil{
-            completedTasks = nil
-            currentTasks = nil
-        }else{
-            completedTasks = self.allTasksList?.allTasks.filter("taskComplited = true")
-            currentTasks = self.allTasksList?.allTasks.filter("taskComplited = false")
-        }
+        let model = realm.objects(Task.self)
+        completedTasks = model.filter("taskComplited = 1")
+        currentTasks = model.filter("taskComplited = 0")
         self.todoTable.reloadData()
     }
     
     @IBAction func addingButton(_ sender: Any) {
         self.todoTable.performBatchUpdates({
             self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            
+            let newTask = Task()
+            newTask.taskNote = ""
+            newTask.taskComplited = false
+ 
+            try! realm.write{
+               realm.add(newTask)
+                self.loadingTasks()
+            }
         }) { (inform) in
             self.todoTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
@@ -54,7 +58,6 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch section {
         case 0:
             return currentTasks?.count ?? 0
