@@ -257,6 +257,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="arrowBn" destination="RJF-t4-yap" id="D6r-wm-wKs"/>
                                             <outlet property="taskTF" destination="6QO-zN-mpp" id="7u8-Bg-47g"/>
                                             <outlet property="tralingTaskTF" destination="vKD-kP-TSI" id="DqP-fD-XFR"/>
                                         </connections>
