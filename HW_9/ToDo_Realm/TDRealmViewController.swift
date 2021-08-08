@@ -136,7 +136,6 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
         }
         cell_Alam.eventTF?.text = task?.taskNote
         cell_Alam.eventTF.tag = indexPath.row
-        
         return cell_Alam
     }
 }

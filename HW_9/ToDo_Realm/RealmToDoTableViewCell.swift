@@ -13,12 +13,14 @@ class RealmToDoTableViewCell: UITableViewCell {
     let model = realm.objects(Task.self)
 
     @IBOutlet weak var eventTF: UITextField!
+    @IBOutlet weak var savingButton: UIButton!
     @IBOutlet weak var tralingEventTF: NSLayoutConstraint!
     
     @IBAction func eventTFDidBegin(_ sender: Any) {
         UIView.animate(withDuration: 0.33, delay: 0, options: .autoreverse, animations: {
             self.tralingEventTF.constant = 40
         })
+        self.savingButton.tintColor = .label
     }
     @IBAction func eventTFDidEnd(_ sender: Any) {
         let stop: String? = String(describing: eventTF.attributedText?.string),
@@ -29,6 +31,11 @@ class RealmToDoTableViewCell: UITableViewCell {
         UIView.animate(withDuration: 0.33, delay: 0, options: .autoreverse, animations: {
             self.tralingEventTF.constant = 0
         })
+        self.savingButton.tintColor = .clear
+    }
+    
+    @IBAction func saveBt(_ sender: Any) {
+        eventTFDidEnd(true)
     }
     
     override func awakeFromNib() {
@@ -37,8 +44,5 @@ class RealmToDoTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

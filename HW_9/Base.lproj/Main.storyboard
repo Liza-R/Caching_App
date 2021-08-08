@@ -129,16 +129,29 @@
                                                         <action selector="eventTFDidEnd:" destination="8jN-tJ-FLt" eventType="editingDidEnd" id="PD8-vv-TR6"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkt-Ga-PhO">
+                                                    <rect key="frame" x="349" y="21.5" width="25" height="24"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="arrow.down.circle" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="saveBt:" destination="8jN-tJ-FLt" eventType="touchUpInside" id="EPU-3M-vbB"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="centerY" secondItem="uk0-rg-FVw" secondAttribute="centerY" id="4b3-TX-E0e"/>
+                                                <constraint firstItem="Hkt-Ga-PhO" firstAttribute="centerY" secondItem="uk0-rg-FVw" secondAttribute="centerY" id="VTv-cB-kGf"/>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="top" secondItem="uk0-rg-FVw" secondAttribute="topMargin" constant="5" id="k7i-MQ-J6c"/>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="leading" secondItem="uk0-rg-FVw" secondAttribute="leadingMargin" id="o5o-aT-mjx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="K3s-wa-JPw" secondAttribute="trailing" id="vMb-G8-GT4"/>
+                                                <constraint firstItem="Hkt-Ga-PhO" firstAttribute="trailing" secondItem="uk0-rg-FVw" secondAttribute="trailingMargin" id="xxG-M2-W6Q"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="eventTF" destination="K3s-wa-JPw" id="luk-yR-70x"/>
+                                            <outlet property="savingButton" destination="Hkt-Ga-PhO" id="3lf-0K-e8I"/>
                                             <outlet property="tralingEventTF" destination="vMb-G8-GT4" id="zTK-gR-0DR"/>
                                         </connections>
                                     </tableViewCell>
@@ -187,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfo-Jq-q8t" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="-231"/>
+            <point key="canvasLocation" x="1511.5942028985507" y="-231.02678571428569"/>
         </scene>
         <!--ToDo CoreData-->
         <scene sceneID="XHl-0D-OWP">
@@ -600,6 +613,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.down.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="cloud.sun.fill" catalog="system" width="128" height="93"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
