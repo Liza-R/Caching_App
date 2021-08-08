@@ -17,6 +17,8 @@ class TDRealmViewController: UIViewController {
 
     var currentTasks: Results<Task>?,
         completedTasks: Results<Task>?
+    
+    let model = realm.objects(Task.self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,32 +29,34 @@ class TDRealmViewController: UIViewController {
     }
     
     func loadingTasks(){
-        let model = realm.objects(Task.self)
         currentTasks = model.filter("taskComplited = 0")
         completedTasks = model.filter("taskComplited = 1")
         self.todoTable.reloadData()
     }
     
     @IBAction func addingButton(_ sender: Any) {
-        self.todoTable.performBatchUpdates({
-            self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-            
-            let newTask = Task()
-            newTask.taskNote = ""
-            newTask.taskComplited = false
- 
-            try! realm.write{
-               realm.add(newTask)
-                self.loadingTasks()
+        let item = model.last
+        if item?.taskNote == ""{
+            AlertsRealm().alertEmptyTF(vc: self)
+        }else{
+            self.todoTable.performBatchUpdates({
+                self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                let newTask = Task()
+                newTask.taskNote = ""
+                newTask.taskComplited = false
+                try! realm.write{
+                    realm.add(newTask)
+                    self.loadingTasks()
+                }
+            }) { (inform) in
+                self.todoTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
-        }) { (inform) in
-            self.todoTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
     }
 }
 
 extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -78,8 +82,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let model = realm.objects(Task.self),
-            item = model[indexPath.row],
+        let item = model[indexPath.row],
             swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
             try! realm.write({
                 realm.delete(item)
@@ -94,8 +97,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
         
-        let model = realm.objects(Task.self),
-            item = model[indexPath.row],
+        let item = model[indexPath.row],
             swipes: UISwipeActionsConfiguration?
         if item.taskComplited == false{
             let swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
@@ -124,16 +126,16 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell_Alam = tableView.dequeueReusableCell(withIdentifier: "realmCell", for: indexPath) as! RealmToDoTableViewCell
-       
-        var task: Task!
+        
+        var task: Task?
         if indexPath.section == 0{
             task = currentTasks?[indexPath.row]
         }
         else{
             task = completedTasks?[indexPath.row]
         }
-        
-        cell_Alam.eventTF?.text = task.taskNote
+        cell_Alam.eventTF?.text = task?.taskNote
+        cell_Alam.eventTF.tag = indexPath.row
         
         return cell_Alam
     }

@@ -6,14 +6,33 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RealmToDoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var eventTF: UITextField!
+    let model = realm.objects(Task.self)
 
+    @IBOutlet weak var eventTF: UITextField!
+    @IBOutlet weak var tralingEventTF: NSLayoutConstraint!
+    
+    @IBAction func eventTFDidBegin(_ sender: Any) {
+        UIView.animate(withDuration: 0.33, delay: 0, options: .autoreverse, animations: {
+            self.tralingEventTF.constant = 40
+        })
+    }
+    @IBAction func eventTFDidEnd(_ sender: Any) {
+        let stop: String? = String(describing: eventTF.attributedText?.string),
+            item = model[eventTF.tag]
+        try! realm.write({
+            item.taskNote = stop ?? ""
+        })
+        UIView.animate(withDuration: 0.33, delay: 0, options: .autoreverse, animations: {
+            self.tralingEventTF.constant = 0
+        })
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

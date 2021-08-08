@@ -104,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dB4-jN-iHy">
-                                <rect key="frame" x="10" y="44" width="394" height="689"/>
+                                <rect key="frame" x="10" y="44" width="394" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="WRT-gg-u4Y">
                                     <rect key="frame" x="0.0" y="115.50000034679067" width="394" height="44"/>
@@ -124,28 +124,32 @@
                                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="eventTFDidBegin:" destination="8jN-tJ-FLt" eventType="editingDidBegin" id="IYV-Y1-btH"/>
+                                                        <action selector="eventTFDidEnd:" destination="8jN-tJ-FLt" eventType="editingDidEnd" id="PD8-vv-TR6"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="centerY" secondItem="uk0-rg-FVw" secondAttribute="centerY" id="4b3-TX-E0e"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="K3s-wa-JPw" secondAttribute="bottom" constant="5" id="acY-6E-oi2"/>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="top" secondItem="uk0-rg-FVw" secondAttribute="topMargin" constant="5" id="k7i-MQ-J6c"/>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="leading" secondItem="uk0-rg-FVw" secondAttribute="leadingMargin" id="o5o-aT-mjx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="K3s-wa-JPw" secondAttribute="trailing" id="vMb-G8-GT4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="eventTF" destination="K3s-wa-JPw" id="UT8-Vt-wUe"/>
+                                            <outlet property="eventTF" destination="K3s-wa-JPw" id="luk-yR-70x"/>
+                                            <outlet property="tralingEventTF" destination="vMb-G8-GT4" id="zTK-gR-0DR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kC-IM-wZA">
-                                <rect key="frame" x="177" y="743" width="60" height="60"/>
+                                <rect key="frame" x="172" y="723" width="70" height="70"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="GYf-oA-CLM"/>
-                                    <constraint firstAttribute="width" constant="60" id="YFB-jk-X6S"/>
+                                    <constraint firstAttribute="height" constant="70" id="GYf-oA-CLM"/>
+                                    <constraint firstAttribute="width" constant="70" id="YFB-jk-X6S"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="tintColor" systemColor="labelColor"/>
@@ -168,7 +172,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dB4-jN-iHy" firstAttribute="top" secondItem="9Sy-h3-JdX" secondAttribute="top" id="Q2Y-ov-QBv"/>
-                            <constraint firstItem="9Sy-h3-JdX" firstAttribute="bottom" secondItem="dB4-jN-iHy" secondAttribute="bottom" constant="80" id="Slo-mt-vH6"/>
+                            <constraint firstItem="9Sy-h3-JdX" firstAttribute="bottom" secondItem="dB4-jN-iHy" secondAttribute="bottom" constant="100" id="Slo-mt-vH6"/>
                             <constraint firstItem="9Sy-h3-JdX" firstAttribute="trailing" secondItem="dB4-jN-iHy" secondAttribute="trailing" constant="10" id="egn-gJ-0dA"/>
                             <constraint firstItem="4kC-IM-wZA" firstAttribute="top" secondItem="dB4-jN-iHy" secondAttribute="bottom" constant="10" id="fhi-lR-NOK"/>
                             <constraint firstItem="4kC-IM-wZA" firstAttribute="centerX" secondItem="dB4-jN-iHy" secondAttribute="centerX" id="gX6-eb-o9F"/>
