@@ -42,7 +42,7 @@ class TDRealmViewController: UIViewController {
             self.todoTable.performBatchUpdates({
                 self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
                 let newTask = Task()
-                newTask.taskNote = ""
+                //newTask.taskNote = ""
                 newTask.taskComplited = false
                 try! realm.write{
                     realm.add(newTask)
@@ -99,7 +99,8 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
         
         let item = model[indexPath.row],
             swipes: UISwipeActionsConfiguration?
-        if item.taskComplited == false{
+        
+        if item.taskComplited == false && item.taskNote != ""{
             let swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
                     try! realm.write({
                         item.taskComplited = !item.taskComplited
@@ -109,7 +110,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
             swipeCheck.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
             swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
             swipes?.performsFirstActionWithFullSwipe = true
-        }else{
+        }else if item.taskComplited == false && item.taskNote != ""{
             let swipeReturn = UIContextualAction(style: .normal, title: "Return"){ (action, view, success) in
                     try! realm.write({
                         item.taskComplited = !item.taskComplited
@@ -118,6 +119,16 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
                 }
             swipeReturn.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
             swipes = UISwipeActionsConfiguration(actions: [swipeReturn])
+            swipes?.performsFirstActionWithFullSwipe = true
+        }else{
+            let swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
+                try! realm.write({
+                    realm.delete(item)
+                    self.loadingTasks()
+                })
+            }
+            swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
+            swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
             swipes?.performsFirstActionWithFullSwipe = true
         }
             return swipes

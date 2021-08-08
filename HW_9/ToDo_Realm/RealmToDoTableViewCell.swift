@@ -23,11 +23,13 @@ class RealmToDoTableViewCell: UITableViewCell {
         self.savingButton.tintColor = .label
     }
     @IBAction func eventTFDidEnd(_ sender: Any) {
-        let stop: String? = String(describing: eventTF.attributedText?.string),
+        let stop = eventTF.attributedText?.string,
             item = model[eventTF.tag]
+
         try! realm.write({
             item.taskNote = stop ?? ""
         })
+        
         UIView.animate(withDuration: 0.33, delay: 0, options: .autoreverse, animations: {
             self.tralingEventTF.constant = 0
         })
