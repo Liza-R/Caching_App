@@ -12,6 +12,7 @@
 		20053E3226B6D5010025AEC1 /* RealmFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3126B6D5010025AEC1 /* RealmFile.swift */; };
 		20053E3426B6D6420025AEC1 /* RealmToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3326B6D6420025AEC1 /* RealmToDoTableViewCell.swift */; };
 		20053E3826BEFA990025AEC1 /* AlertsForRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3726BEFA990025AEC1 /* AlertsForRealm.swift */; };
+		2019E01726C03B8A004036D5 /* HW_9.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2019E01526C03B8A004036D5 /* HW_9.xcdatamodeld */; };
 		203A4E99269F13B000ACE97C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E98269F13B000ACE97C /* AppDelegate.swift */; };
 		203A4E9B269F13B000ACE97C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E9A269F13B000ACE97C /* SceneDelegate.swift */; };
 		203A4E9D269F13B000ACE97C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E9C269F13B000ACE97C /* ViewController.swift */; };
@@ -58,6 +59,7 @@
 		20053E3126B6D5010025AEC1 /* RealmFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFile.swift; sourceTree = "<group>"; };
 		20053E3326B6D6420025AEC1 /* RealmToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmToDoTableViewCell.swift; sourceTree = "<group>"; };
 		20053E3726BEFA990025AEC1 /* AlertsForRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsForRealm.swift; sourceTree = "<group>"; };
+		2019E01626C03B8A004036D5 /* HW_9_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HW_9_CoreData.xcdatamodel; sourceTree = "<group>"; };
 		203A4E95269F13B000ACE97C /* HW_9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW_9.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203A4E98269F13B000ACE97C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		203A4E9A269F13B000ACE97C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				203A4EA6269F13B000ACE97C /* Info.plist */,
 				203A4E9E269F13B000ACE97C /* Main.storyboard */,
+				2019E01526C03B8A004036D5 /* HW_9.xcdatamodeld */,
 				203A4ECC269F150000ACE97C /* Other */,
 				203A4EC8269F14C500ACE97C /* UserDefaults */,
 				203A4EC9269F14D300ACE97C /* ToDo_Realm */,
@@ -431,6 +434,7 @@
 				203A4ED0269F154D00ACE97C /* TDCoreDataViewController.swift in Sources */,
 				20053E3226B6D5010025AEC1 /* RealmFile.swift in Sources */,
 				203A4ECE269F153B00ACE97C /* TDRealmViewController.swift in Sources */,
+				2019E01726C03B8A004036D5 /* HW_9.xcdatamodeld in Sources */,
 				20053E3426B6D6420025AEC1 /* RealmToDoTableViewCell.swift in Sources */,
 				203A4E9B269F13B000ACE97C /* SceneDelegate.swift in Sources */,
 				20A8413426C02EBB0020DDC0 /* CoreDataTableViewCell.swift in Sources */,
@@ -771,6 +775,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2019E01526C03B8A004036D5 /* HW_9.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2019E01626C03B8A004036D5 /* HW_9_CoreData.xcdatamodel */,
+			);
+			currentVersion = 2019E01626C03B8A004036D5 /* HW_9_CoreData.xcdatamodel */;
+			name = HW_9.xcdatamodeld;
+			path = ../../HW_9_CoreData/HW_9_CoreData/HW_9.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 203A4E8D269F13B000ACE97C /* Project object */;
 }
