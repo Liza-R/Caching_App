@@ -135,7 +135,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="eventTF" destination="K3s-wa-JPw" id="luk-yR-70x"/>
-                                            <outlet property="tralingEventTF" destination="vMb-G8-GT4" id="zTK-gR-0DR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -229,7 +228,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="taskTF" destination="6QO-zN-mpp" id="7u8-Bg-47g"/>
-                                            <outlet property="tralingTaskTF" destination="vKD-kP-TSI" id="DqP-fD-XFR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

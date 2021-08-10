@@ -32,6 +32,7 @@
 		203A4EE2269F178900ACE97C /* WeatherAlamofireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4EE1269F178900ACE97C /* WeatherAlamofireTableViewCell.swift */; };
 		203A4EE4269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4EE3269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift */; };
 		203A4EE6269F17F300ACE97C /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4EE5269F17F300ACE97C /* Alerts.swift */; };
+		206E901826C2ADFD0050F8E3 /* AlertsCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206E901726C2ADFD0050F8E3 /* AlertsCoreData.swift */; };
 		20A8413426C02EBB0020DDC0 /* CoreDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8413326C02EBB0020DDC0 /* CoreDataTableViewCell.swift */; };
 		2E70E9ABDA16270DE7E04D5D /* Pods_HW_9.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A74659220207392C26C7E17 /* Pods_HW_9.framework */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,7 @@
 		203A4EE1269F178900ACE97C /* WeatherAlamofireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlamofireTableViewCell.swift; sourceTree = "<group>"; };
 		203A4EE3269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCellAlam.swift; sourceTree = "<group>"; };
 		203A4EE5269F17F300ACE97C /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		206E901726C2ADFD0050F8E3 /* AlertsCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsCoreData.swift; sourceTree = "<group>"; };
 		20A8413326C02EBB0020DDC0 /* CoreDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewCell.swift; sourceTree = "<group>"; };
 		3A74659220207392C26C7E17 /* Pods_HW_9.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48ABF087ADC6275C4E6E7368 /* Pods-HW_9.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9.release.xcconfig"; path = "Target Support Files/Pods-HW_9/Pods-HW_9.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				2019E01826C04797004036D5 /* HW_9_CD.xcdatamodeld */,
 				203A4ECF269F154D00ACE97C /* TDCoreDataViewController.swift */,
 				20A8413326C02EBB0020DDC0 /* CoreDataTableViewCell.swift */,
+				206E901726C2ADFD0050F8E3 /* AlertsCoreData.swift */,
 			);
 			path = ToDo_CoreData;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				203A4EE4269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift in Sources */,
 				2019E01A26C04797004036D5 /* HW_9_CD.xcdatamodeld in Sources */,
 				20053E3826BEFA990025AEC1 /* AlertsForRealm.swift in Sources */,
+				206E901826C2ADFD0050F8E3 /* AlertsCoreData.swift in Sources */,
 				203A4EE6269F17F300ACE97C /* Alerts.swift in Sources */,
 				203A4E9D269F13B000ACE97C /* ViewController.swift in Sources */,
 				203A4EE2269F178900ACE97C /* WeatherAlamofireTableViewCell.swift in Sources */,
