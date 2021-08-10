@@ -24,13 +24,23 @@ class TDRealmViewController: UIViewController {
         super.viewDidLoad()
         self.todoTable.dataSource = self
         self.todoTable.delegate = self
-        self.todoTable.reloadData()
         loadingTasks()
+        removingEmpty()
     }
     
     func loadingTasks(){
         currentTasks = model.filter("taskComplited = 0")
         completedTasks = model.filter("taskComplited = 1")
+        self.todoTable.reloadData()
+    }
+    func removingEmpty(){
+        for i in model{
+            if i.taskNote == ""{
+                try! realm.write({
+                    realm.delete(i)
+                })
+            }
+        }
         self.todoTable.reloadData()
     }
     
@@ -42,7 +52,7 @@ class TDRealmViewController: UIViewController {
             self.todoTable.performBatchUpdates({
                 self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
                 let newTask = Task()
-                //newTask.taskNote = ""
+                newTask.taskNote = ""
                 newTask.taskComplited = false
                 try! realm.write{
                     realm.add(newTask)
@@ -86,8 +96,8 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
             swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
             try! realm.write({
                 realm.delete(item)
-                self.loadingTasks()
             })
+            self.loadingTasks()
         }
         swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
         let swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
@@ -100,27 +110,29 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
         let item = model[indexPath.row],
             swipes: UISwipeActionsConfiguration?
         
-        if item.taskComplited == false && item.taskNote != ""{
+        if item.taskComplited == false{
             let swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
-                    try! realm.write({
-                        item.taskComplited = !item.taskComplited
+                    try! realm.write{
+                        item.taskComplited = true
                         self.loadingTasks()
-                    })
+                    }
                 }
             swipeCheck.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
             swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
             swipes?.performsFirstActionWithFullSwipe = true
-        }else if item.taskComplited == true && item.taskNote != ""{
+            //return swipes
+        }else /*if item.taskComplited == true && item.taskNote != ""*/{
             let swipeReturn = UIContextualAction(style: .normal, title: "Return"){ (action, view, success) in
-                    try! realm.write({
-                        item.taskComplited = !item.taskComplited
+                    try! realm.write{
+                        item.taskComplited = false
                         self.loadingTasks()
-                    })
+                    }
                 }
             swipeReturn.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
             swipes = UISwipeActionsConfiguration(actions: [swipeReturn])
             swipes?.performsFirstActionWithFullSwipe = true
-        }else{
+            //return swipes
+        }/*else{
             let swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
                 try! realm.write({
                     realm.delete(item)
@@ -130,7 +142,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
             swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
             swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
             swipes?.performsFirstActionWithFullSwipe = true
-        }
+        }*/
             return swipes
     }
     
@@ -147,6 +159,9 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
         }
         cell_Alam.eventTF?.text = task?.taskNote
         cell_Alam.eventTF.tag = indexPath.row
+        
+        print(model)
+        print("----")
         return cell_Alam
     }
 }

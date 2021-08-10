@@ -9,6 +9,6 @@ import Foundation
 import RealmSwift
 
 class Task: Object{
-    @objc dynamic var taskNote = "",
-                taskComplited = false
+    @objc dynamic var taskNote = ""
+    @objc dynamic var taskComplited = false
 }

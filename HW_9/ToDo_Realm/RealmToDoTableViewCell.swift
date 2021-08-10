@@ -29,7 +29,6 @@ class RealmToDoTableViewCell: UITableViewCell {
         try! realm.write({
             item.taskNote = stop ?? ""
         })
-        
         UIView.animate(withDuration: 0.33, delay: 0, options: .autoreverse, animations: {
             self.tralingEventTF.constant = 0
         })
@@ -39,6 +38,7 @@ class RealmToDoTableViewCell: UITableViewCell {
     @IBAction func saveBt(_ sender: Any) {
         eventTFDidEnd(true)
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

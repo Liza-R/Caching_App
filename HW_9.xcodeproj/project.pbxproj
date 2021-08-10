@@ -149,7 +149,6 @@
 				203A4EC9269F14D300ACE97C /* ToDo_Realm */,
 				203A4ECA269F14E600ACE97C /* ToDo_CoreData */,
 				203A4ECB269F14F000ACE97C /* Weather_Cache */,
-				2019E01826C04797004036D5 /* HW_9_CD.xcdatamodeld */,
 			);
 			path = HW_9;
 			sourceTree = "<group>";
@@ -195,6 +194,7 @@
 		203A4ECA269F14E600ACE97C /* ToDo_CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				2019E01826C04797004036D5 /* HW_9_CD.xcdatamodeld */,
 				203A4ECF269F154D00ACE97C /* TDCoreDataViewController.swift */,
 				20A8413326C02EBB0020DDC0 /* CoreDataTableViewCell.swift */,
 			);
