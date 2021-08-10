@@ -9,11 +9,31 @@ import Foundation
 import UIKit
 
 class AlertsRealm{
-    func alertEmptyTF(vc: UIViewController){
-        let alert = UIAlertController(title: "Empty task", message: "Fill in a blank task", preferredStyle: UIAlertController.Style.actionSheet),
-        cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel)
+    
+    func alertAddNewTask(vc: UIViewController, table: UITableView){
+        let alert = UIAlertController(title: "New Task", message: "Enter task:", preferredStyle: .alert),
+            cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        
+        var alertTF = UITextField()
+        alert.addTextField{ textF in
+            alertTF = textF
+            textF.placeholder = "New task"
+        }
 
+        let saveAction = UIAlertAction(title: "Save", style: .default){ action in
+            guard let taskText = alertTF.text, !taskText.isEmpty else { return }
+            let newTask = Task()
+            newTask.taskNote = taskText
+            newTask.taskComplited = false
+            try! realm.write{
+                realm.add(newTask)
+            }
+            table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        }
+        
          alert.addAction(cancelAction)
+         alert.addAction(saveAction)
          alert.pruneNegativeWidthConstraintsRealm()
          vc.present(alert, animated: true, completion: nil)
     }

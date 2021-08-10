@@ -45,23 +45,9 @@ class TDRealmViewController: UIViewController {
     }
     
     @IBAction func addingButton(_ sender: Any) {
-        let item = model.last
-        if item?.taskNote == ""{
-            AlertsRealm().alertEmptyTF(vc: self)
-        }else{
-            self.todoTable.performBatchUpdates({
-                self.todoTable.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-                let newTask = Task()
-                newTask.taskNote = ""
-                newTask.taskComplited = false
-                try! realm.write{
-                    realm.add(newTask)
-                    self.loadingTasks()
-                }
-            }) { (inform) in
-                self.todoTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-            }
-        }
+
+        AlertsRealm().alertAddNewTask(vc: self, table: self.todoTable)
+        self.loadingTasks()
     }
 }
 
@@ -121,7 +107,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
             swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
             swipes?.performsFirstActionWithFullSwipe = true
             //return swipes
-        }else /*if item.taskComplited == true && item.taskNote != ""*/{
+        }else if item.taskComplited == true && item.taskNote != ""{
             let swipeReturn = UIContextualAction(style: .normal, title: "Return"){ (action, view, success) in
                     try! realm.write{
                         item.taskComplited = false
@@ -132,7 +118,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
             swipes = UISwipeActionsConfiguration(actions: [swipeReturn])
             swipes?.performsFirstActionWithFullSwipe = true
             //return swipes
-        }/*else{
+        }else{
             let swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
                 try! realm.write({
                     realm.delete(item)
@@ -142,7 +128,7 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
             swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
             swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
             swipes?.performsFirstActionWithFullSwipe = true
-        }*/
+        }
             return swipes
     }
     

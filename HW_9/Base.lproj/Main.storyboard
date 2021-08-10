@@ -124,34 +124,17 @@
                                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="eventTFDidBegin:" destination="8jN-tJ-FLt" eventType="editingDidBegin" id="IYV-Y1-btH"/>
-                                                        <action selector="eventTFDidEnd:" destination="8jN-tJ-FLt" eventType="editingDidEnd" id="PD8-vv-TR6"/>
-                                                    </connections>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkt-Ga-PhO">
-                                                    <rect key="frame" x="349" y="21.5" width="25" height="24"/>
-                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="arrow.down.circle" catalog="system">
-                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="saveBt:" destination="8jN-tJ-FLt" eventType="touchUpInside" id="EPU-3M-vbB"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="centerY" secondItem="uk0-rg-FVw" secondAttribute="centerY" id="4b3-TX-E0e"/>
-                                                <constraint firstItem="Hkt-Ga-PhO" firstAttribute="centerY" secondItem="uk0-rg-FVw" secondAttribute="centerY" id="VTv-cB-kGf"/>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="top" secondItem="uk0-rg-FVw" secondAttribute="topMargin" constant="5" id="k7i-MQ-J6c"/>
                                                 <constraint firstItem="K3s-wa-JPw" firstAttribute="leading" secondItem="uk0-rg-FVw" secondAttribute="leadingMargin" id="o5o-aT-mjx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="K3s-wa-JPw" secondAttribute="trailing" id="vMb-G8-GT4"/>
-                                                <constraint firstItem="Hkt-Ga-PhO" firstAttribute="trailing" secondItem="uk0-rg-FVw" secondAttribute="trailingMargin" id="xxG-M2-W6Q"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="eventTF" destination="K3s-wa-JPw" id="luk-yR-70x"/>
-                                            <outlet property="savingButton" destination="Hkt-Ga-PhO" id="3lf-0K-e8I"/>
                                             <outlet property="tralingEventTF" destination="vMb-G8-GT4" id="zTK-gR-0DR"/>
                                         </connections>
                                     </tableViewCell>
@@ -236,20 +219,8 @@
                                                         <action selector="didEndTF:" destination="ya8-Z4-0Tt" eventType="editingDidEnd" id="2W5-WP-dFl"/>
                                                     </connections>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJF-t4-yap">
-                                                    <rect key="frame" x="349" y="15.5" width="25" height="24"/>
-                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="arrow.left.circle" catalog="system">
-                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="arrowButton:" destination="ya8-Z4-0Tt" eventType="touchUpInside" id="48d-Je-oye"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="RJF-t4-yap" secondAttribute="trailing" constant="20" id="6vi-tb-E7A"/>
-                                                <constraint firstItem="RJF-t4-yap" firstAttribute="centerY" secondItem="6QO-zN-mpp" secondAttribute="centerY" id="WQw-Qf-AUR"/>
                                                 <constraint firstItem="6QO-zN-mpp" firstAttribute="centerY" secondItem="Iuy-kc-cTf" secondAttribute="centerY" id="dOA-0Y-Lfl"/>
                                                 <constraint firstItem="6QO-zN-mpp" firstAttribute="top" secondItem="Iuy-kc-cTf" secondAttribute="top" constant="10" id="gKr-fj-y9n"/>
                                                 <constraint firstAttribute="trailing" secondItem="6QO-zN-mpp" secondAttribute="trailing" constant="20" id="vKD-kP-TSI"/>
@@ -257,7 +228,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="arrowBn" destination="RJF-t4-yap" id="D6r-wm-wKs"/>
                                             <outlet property="taskTF" destination="6QO-zN-mpp" id="7u8-Bg-47g"/>
                                             <outlet property="tralingTaskTF" destination="vKD-kP-TSI" id="DqP-fD-XFR"/>
                                         </connections>
@@ -607,8 +577,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.down.circle" catalog="system" width="128" height="121"/>
-        <image name="arrow.left.circle" catalog="system" width="128" height="121"/>
         <image name="cloud.sun.fill" catalog="system" width="128" height="93"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.badge.plus" catalog="system" width="128" height="124"/>
