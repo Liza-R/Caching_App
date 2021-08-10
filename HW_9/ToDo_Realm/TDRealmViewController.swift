@@ -25,7 +25,6 @@ class TDRealmViewController: UIViewController {
         self.todoTable.dataSource = self
         self.todoTable.delegate = self
         loadingTasks()
-        removingEmpty()
     }
     
     func loadingTasks(){
@@ -33,19 +32,8 @@ class TDRealmViewController: UIViewController {
         completedTasks = model.filter("taskComplited = 1")
         self.todoTable.reloadData()
     }
-    func removingEmpty(){
-        for i in model{
-            if i.taskNote == ""{
-                try! realm.write({
-                    realm.delete(i)
-                })
-            }
-        }
-        self.todoTable.reloadData()
-    }
     
     @IBAction func addingButton(_ sender: Any) {
-
         AlertsRealm().alertAddNewTask(vc: self, table: self.todoTable)
         self.loadingTasks()
     }
@@ -77,56 +65,61 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipes: UISwipeActionsConfiguration?
         
-        let item = model[indexPath.row],
-            swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
-            try! realm.write({
-                realm.delete(item)
-            })
-            self.loadingTasks()
-        }
-        swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
-        let swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
-        swipes.performsFirstActionWithFullSwipe = true
-        return swipes
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
-        
-        let item = model[indexPath.row],
-            swipes: UISwipeActionsConfiguration?
-        
-        if item.taskComplited == false{
-            let swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
-                    try! realm.write{
-                        item.taskComplited = true
-                        self.loadingTasks()
-                    }
-                }
-            swipeCheck.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-            swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
-            swipes?.performsFirstActionWithFullSwipe = true
-            //return swipes
-        }else if item.taskComplited == true && item.taskNote != ""{
-            let swipeReturn = UIContextualAction(style: .normal, title: "Return"){ (action, view, success) in
-                    try! realm.write{
-                        item.taskComplited = false
-                        self.loadingTasks()
-                    }
-                }
-            swipeReturn.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
-            swipes = UISwipeActionsConfiguration(actions: [swipeReturn])
-            swipes?.performsFirstActionWithFullSwipe = true
-            //return swipes
-        }else{
-            let swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
+        if indexPath.section == 0{
+            let item = currentTasks?[indexPath.row],
+                swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
                 try! realm.write({
-                    realm.delete(item)
+                    realm.delete(item!)
                     self.loadingTasks()
                 })
             }
             swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
             swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
+            swipes?.performsFirstActionWithFullSwipe = true
+        }else{
+            let item = completedTasks?[indexPath.row],
+                swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
+                try! realm.write({
+                    realm.delete(item!)
+                    self.loadingTasks()
+                })
+            }
+            swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
+            swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
+            swipes?.performsFirstActionWithFullSwipe = true
+        }
+        return swipes
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
+
+        let section_ = indexPath.section,
+            row_ = indexPath.row,
+            swipes: UISwipeActionsConfiguration?
+        
+        if section_ == 0{
+            let item = currentTasks?[row_],
+                swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
+                        try! realm.write{
+                            item?.taskComplited = true
+                            self.loadingTasks()
+                        }
+                    }
+            swipeCheck.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+            swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
+            swipes?.performsFirstActionWithFullSwipe = true
+        }else{
+            let item = completedTasks?[row_],
+                swipeReturn = UIContextualAction(style: .normal, title: "Return"){ (action, view, success) in
+                        try! realm.write{
+                            item?.taskComplited = false
+                            self.loadingTasks()
+                        }
+                    }
+            swipeReturn.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+            swipes = UISwipeActionsConfiguration(actions: [swipeReturn])
             swipes?.performsFirstActionWithFullSwipe = true
         }
             return swipes
@@ -135,19 +128,14 @@ extension TDRealmViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell_Alam = tableView.dequeueReusableCell(withIdentifier: "realmCell", for: indexPath) as! RealmToDoTableViewCell
-        
-        var task: Task?
         if indexPath.section == 0{
-            task = currentTasks?[indexPath.row]
+            let task = currentTasks?[indexPath.row]
+            cell_Alam.eventTF?.text = task?.taskNote
         }
         else{
-            task = completedTasks?[indexPath.row]
+            let task = completedTasks?[indexPath.row]
+            cell_Alam.eventTF?.text = task?.taskNote
         }
-        cell_Alam.eventTF?.text = task?.taskNote
-        cell_Alam.eventTF.tag = indexPath.row
-        
-        print(model)
-        print("----")
         return cell_Alam
     }
 }

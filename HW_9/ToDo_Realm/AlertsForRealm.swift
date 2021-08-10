@@ -12,7 +12,9 @@ class AlertsRealm{
     
     func alertAddNewTask(vc: UIViewController, table: UITableView){
         let alert = UIAlertController(title: "New Task", message: "Enter task:", preferredStyle: .alert),
-            cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+            cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil),
+            model = realm.objects(Task.self),
+            curTasks = model.filter("taskComplited = 0")
         
         
         var alertTF = UITextField()
@@ -29,7 +31,7 @@ class AlertsRealm{
             try! realm.write{
                 realm.add(newTask)
             }
-            table.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            table.insertRows(at: [IndexPath(row: curTasks.count - 1, section: 0)], with: .automatic)
         }
         
          alert.addAction(cancelAction)
