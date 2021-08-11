@@ -8,88 +8,80 @@
 import UIKit
 import CoreData
 
-var tasks: [Tasks] = []
+var currentTasks: [Tasks] = [],
+    completedTasks: [Tasks] = []
 
 class TDCoreDataViewController: UIViewController {
 
     @IBOutlet weak var todoTableCoreData: UITableView!
-
+    
+    let context = AlertsCD().getContext(),
+        fetchRequest: NSFetchRequest<Tasks> = Tasks.fetchRequest()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.todoTableCoreData.dataSource = self
         self.todoTableCoreData.delegate = self
-        self.todoTableCoreData.reloadData()
-        //loadingTasks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let context = AlertsCD().getContext()
-        let fetchRequest: NSFetchRequest<Tasks> = Tasks.fetchRequest()
-        /*let sortDescriptor = NSSortDescriptor(key: "taskNote", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        */
         do {
-            tasks = try context.fetch(fetchRequest)
+            let tasks = try context.fetch(fetchRequest)
+            for i in tasks{
+                switch i.taskComplite {
+                case true:
+                    completedTasks.append(i)
+                case false:
+                    currentTasks.append(i)
+                }
+            }
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        self.todoTableCoreData.reloadData()
     }
     
-    /*
-     func loadingTasks(){
-         currentTasks = model.filter("taskComplited = 0")
-         completedTasks = model.filter("taskComplited = 1")
-         self.todoTable.reloadData()
-     }
-     */
-    
     @IBAction func addingButtonCoreData(_ sender: Any) {
-        
         AlertsCD().alertAddNewTask(vc: self, table: self.todoTableCoreData)
         self.todoTableCoreData.reloadData()
-         //self.loadingTasks()
     }
 }
 extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
     
-    /*func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    */
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*switch section {
+        switch section {
         case 0:
-            return tasks.count//currentTasks?.count ?? 0
+            return currentTasks.count
         case 1:
-            return tasks.count//completedTasks?.count ?? 0
+            return completedTasks.count
         default:
             print("error -> tableView's sections")
             return 0
-        }*/
-        return tasks.count
+        }
     }
     
-   /* func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "Current tasks"
         }
         return "Complited tasks"
-    }*/
+    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-     let swipes: UISwipeActionsConfiguration?,
-         context = AlertsCD().getContext(),
-         fetchRequest: NSFetchRequest<Tasks> = Tasks.fetchRequest()
+     let swipes: UISwipeActionsConfiguration?
      
-    // if indexPath.section == 0{
-         let items = try? context.fetch(fetchRequest),
+     if indexPath.section == 0{
+        let item = currentTasks[indexPath.row],
              swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
-                context.delete(items![indexPath.row])
+                self.context.delete(item)
                 do {
-                    try context.save()
-                    tasks = try context.fetch(fetchRequest)
+                    try self.context.save()
+                    currentTasks = try self.context.fetch(self.fetchRequest)
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
@@ -98,18 +90,22 @@ extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
          swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
          swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
          swipes?.performsFirstActionWithFullSwipe = true
-     /*}else{
-         let item = completedTasks?[indexPath.row],
+     }else{
+        let item = completedTasks[indexPath.row],
              swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
-             try! realm.write({
-                 realm.delete(item!)
-                 self.loadingTasks()
-             })
+                self.context.delete(item)
+                do {
+                    try self.context.save()
+                    completedTasks = try self.context.fetch(self.fetchRequest)
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+                self.todoTableCoreData.reloadData()
          }
          swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
          swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
          swipes?.performsFirstActionWithFullSwipe = true
-     }*/
+     }
      return swipes
  }
     
@@ -149,17 +145,14 @@ extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "coreDataCell", for: indexPath) as! CoreDataTableViewCell
         
-         /*if indexPath.section == 0{
-            let task = tasks[indexPath.row]
+         if indexPath.section == 0{
+            let task = currentTasks[indexPath.row]
             cell.taskTF.text = task.taskNote
-             //let task = currentTasks?[indexPath.row]
          }
          else{
-            //let task = completedTasks?[indexPath.row]
-            let task = tasks[indexPath.row]
+            let task = completedTasks[indexPath.row]
             cell.taskTF.text = task.taskNote
-         }*/
-        cell.taskTF.text = tasks[indexPath.row].taskNote
+         }
         return cell
     }
 }

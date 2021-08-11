@@ -12,10 +12,8 @@ import CoreData
 class AlertsCD{
     func alertAddNewTask(vc: UIViewController, table: UITableView){
         let alert = UIAlertController(title: "New Task", message: "Enter task:", preferredStyle: .alert),
-            cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)/*,
-            curTasks = model.filter("taskComplited = 0")
+            cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
-        */
         var alertTF = UITextField()
         alert.addTextField{ textF in
             alertTF = textF
@@ -23,10 +21,9 @@ class AlertsCD{
         }
 
         let saveAction = UIAlertAction(title: "Save", style: .default){ action in
-            
             let textTask = alertTF.text
             self.saveTask(noteTask: textTask ?? "Empty note")
-            table.insertRows(at: [IndexPath(row: tasks.count - 1, section: 0)], with: .automatic)
+            table.insertRows(at: [IndexPath(row: currentTasks.count - 1, section: 0)], with: .automatic)
         }
         
          alert.addAction(cancelAction)
@@ -46,7 +43,7 @@ class AlertsCD{
         
         do {
             try context.save()
-            tasks.append(taskObject)
+            currentTasks.append(taskObject)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
