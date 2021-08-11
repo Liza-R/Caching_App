@@ -26,7 +26,7 @@ class AlertsCD{
             
             let textTask = alertTF.text
             self.saveTask(noteTask: textTask ?? "Empty note")
-            table.insertRows(at: [IndexPath(row: 0/*curTasks.count - 1*/, section: 0)], with: .automatic)
+            table.insertRows(at: [IndexPath(row: tasks.count - 1, section: 0)], with: .automatic)
         }
         
          alert.addAction(cancelAction)

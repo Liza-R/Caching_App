@@ -78,21 +78,27 @@ extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
         return "Complited tasks"
     }*/
     
-    /*func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-     let swipes: UISwipeActionsConfiguration?
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+     let swipes: UISwipeActionsConfiguration?,
+         context = AlertsCD().getContext(),
+         fetchRequest: NSFetchRequest<Tasks> = Tasks.fetchRequest()
      
-     if indexPath.section == 0{
-         let item = currentTasks?[indexPath.row],
+    // if indexPath.section == 0{
+         let items = try? context.fetch(fetchRequest),
              swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
-             try! realm.write({
-                 realm.delete(item!)
-                 self.loadingTasks()
-             })
+                context.delete(items![indexPath.row])
+                do {
+                    try context.save()
+                    tasks = try context.fetch(fetchRequest)
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+                self.todoTableCoreData.reloadData()
          }
          swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
          swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
          swipes?.performsFirstActionWithFullSwipe = true
-     }else{
+     /*}else{
          let item = completedTasks?[indexPath.row],
              swipeRemove = UIContextualAction(style: .normal, title: "Remove"){ (action, view, success) in
              try! realm.write({
@@ -103,9 +109,9 @@ extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
          swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
          swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
          swipes?.performsFirstActionWithFullSwipe = true
-     }
+     }*/
      return swipes
- }*/
+ }
     
     /*func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
      
