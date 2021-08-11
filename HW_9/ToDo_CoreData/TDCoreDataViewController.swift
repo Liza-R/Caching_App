@@ -8,7 +8,8 @@
 import UIKit
 import CoreData
 
-var currentTasks: [Tasks] = [],
+var tasks: [Tasks] = [],
+    currentTasks: [Tasks] = [],
     completedTasks: [Tasks] = []
 
 class TDCoreDataViewController: UIViewController {
@@ -27,24 +28,30 @@ class TDCoreDataViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         do {
-            let tasks = try context.fetch(fetchRequest)
-            for i in tasks{
-                switch i.taskComplite {
-                case true:
-                    completedTasks.append(i)
-                case false:
-                    currentTasks.append(i)
-                }
-            }
+            tasks = try context.fetch(fetchRequest)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        self.todoTableCoreData.reloadData()
+        loadingTasks()
     }
+    
+     func loadingTasks(){
+        currentTasks.removeAll()
+        completedTasks.removeAll()
+         for i in tasks{
+            switch i.taskComplite {
+            case false:
+                currentTasks.append(i)
+            case true:
+                completedTasks.append(i)
+            }
+        }
+         self.todoTableCoreData.reloadData()
+     }
     
     @IBAction func addingButtonCoreData(_ sender: Any) {
         AlertsCD().alertAddNewTask(vc: self, table: self.todoTableCoreData)
-        self.todoTableCoreData.reloadData()
+        self.loadingTasks()
     }
 }
 extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
@@ -81,11 +88,11 @@ extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
                 self.context.delete(item)
                 do {
                     try self.context.save()
-                    currentTasks = try self.context.fetch(self.fetchRequest)
+                    tasks = try self.context.fetch(self.fetchRequest)
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
-                self.todoTableCoreData.reloadData()
+                self.loadingTasks()
          }
          swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
          swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
@@ -96,11 +103,11 @@ extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
                 self.context.delete(item)
                 do {
                     try self.context.save()
-                    completedTasks = try self.context.fetch(self.fetchRequest)
+                    tasks = try self.context.fetch(self.fetchRequest)
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
-                self.todoTableCoreData.reloadData()
+                self.loadingTasks()
          }
          swipeRemove.backgroundColor = #colorLiteral(red: 0.646001092, green: 0.05260277429, blue: 0, alpha: 1)
          swipes = UISwipeActionsConfiguration(actions: [swipeRemove])
@@ -109,37 +116,43 @@ extension TDCoreDataViewController: UITableViewDataSource, UITableViewDelegate{
      return swipes
  }
     
-    /*func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
      
      let section_ = indexPath.section,
          row_ = indexPath.row,
          swipes: UISwipeActionsConfiguration?
      
      if section_ == 0{
-         let item = currentTasks?[row_],
+         let item = currentTasks[row_],
              swipeCheck = UIContextualAction(style: .normal, title: "Check"){ (action, view, success) in
-                     try! realm.write{
-                         item?.taskComplited = true
-                         self.loadingTasks()
-                     }
+                item.taskComplite = true
+                do {
+                    try self.context.save()
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+                self.loadingTasks()
                  }
          swipeCheck.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
          swipes = UISwipeActionsConfiguration(actions: [swipeCheck])
          swipes?.performsFirstActionWithFullSwipe = true
      }else{
-         let item = completedTasks?[row_],
+         let item = completedTasks[row_],
              swipeReturn = UIContextualAction(style: .normal, title: "Return"){ (action, view, success) in
-                     try! realm.write{
-                         item?.taskComplited = false
-                         self.loadingTasks()
-                     }
-                 }
+                item.taskComplite = false
+                do {
+                    try self.context.save()
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+                self.loadingTasks()
+            }
          swipeReturn.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
          swipes = UISwipeActionsConfiguration(actions: [swipeReturn])
          swipes?.performsFirstActionWithFullSwipe = true
      }
          return swipes
- }*/
+ }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

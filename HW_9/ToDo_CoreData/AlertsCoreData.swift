@@ -44,6 +44,7 @@ class AlertsCD{
         do {
             try context.save()
             currentTasks.append(taskObject)
+            tasks.append(taskObject)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
