@@ -176,7 +176,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="ToDo Realm" image="tortoise.fill" catalog="system" selectedImage="tortoise.fill" id="3p3-QP-07F"/>
                     <connections>
-                        <outlet property="addButton" destination="4kC-IM-wZA" id="Swd-B2-H20"/>
                         <outlet property="todoTable" destination="dB4-jN-iHy" id="7pD-MF-r84"/>
                     </connections>
                 </viewController>
@@ -213,10 +212,6 @@
                                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="didBeginTF:" destination="ya8-Z4-0Tt" eventType="editingDidBegin" id="oGs-lQ-6eH"/>
-                                                        <action selector="didEndTF:" destination="ya8-Z4-0Tt" eventType="editingDidEnd" id="2W5-WP-dFl"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

@@ -12,7 +12,6 @@
 		20053E3226B6D5010025AEC1 /* RealmFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3126B6D5010025AEC1 /* RealmFile.swift */; };
 		20053E3426B6D6420025AEC1 /* RealmToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3326B6D6420025AEC1 /* RealmToDoTableViewCell.swift */; };
 		20053E3826BEFA990025AEC1 /* AlertsForRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20053E3726BEFA990025AEC1 /* AlertsForRealm.swift */; };
-		2019E01A26C04797004036D5 /* HW_9_CD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2019E01826C04797004036D5 /* HW_9_CD.xcdatamodeld */; };
 		203A4E99269F13B000ACE97C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E98269F13B000ACE97C /* AppDelegate.swift */; };
 		203A4E9B269F13B000ACE97C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E9A269F13B000ACE97C /* SceneDelegate.swift */; };
 		203A4E9D269F13B000ACE97C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4E9C269F13B000ACE97C /* ViewController.swift */; };
@@ -32,6 +31,7 @@
 		203A4EE2269F178900ACE97C /* WeatherAlamofireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4EE1269F178900ACE97C /* WeatherAlamofireTableViewCell.swift */; };
 		203A4EE4269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4EE3269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift */; };
 		203A4EE6269F17F300ACE97C /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A4EE5269F17F300ACE97C /* Alerts.swift */; };
+		204E4A5726C4092000F56BEB /* HW_9.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 204E4A5526C4091F00F56BEB /* HW_9.xcdatamodeld */; };
 		206E901826C2ADFD0050F8E3 /* AlertsCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206E901726C2ADFD0050F8E3 /* AlertsCoreData.swift */; };
 		20A8413426C02EBB0020DDC0 /* CoreDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8413326C02EBB0020DDC0 /* CoreDataTableViewCell.swift */; };
 		2E70E9ABDA16270DE7E04D5D /* Pods_HW_9.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A74659220207392C26C7E17 /* Pods_HW_9.framework */; };
@@ -60,7 +60,6 @@
 		20053E3126B6D5010025AEC1 /* RealmFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFile.swift; sourceTree = "<group>"; };
 		20053E3326B6D6420025AEC1 /* RealmToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmToDoTableViewCell.swift; sourceTree = "<group>"; };
 		20053E3726BEFA990025AEC1 /* AlertsForRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsForRealm.swift; sourceTree = "<group>"; };
-		2019E01926C04797004036D5 /* HW_9_CD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HW_9_CD.xcdatamodel; sourceTree = "<group>"; };
 		203A4E95269F13B000ACE97C /* HW_9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW_9.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203A4E98269F13B000ACE97C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		203A4E9A269F13B000ACE97C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +85,7 @@
 		203A4EE1269F178900ACE97C /* WeatherAlamofireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlamofireTableViewCell.swift; sourceTree = "<group>"; };
 		203A4EE3269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCellAlam.swift; sourceTree = "<group>"; };
 		203A4EE5269F17F300ACE97C /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		204E4A5626C4091F00F56BEB /* HW_9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HW_9.xcdatamodel; sourceTree = "<group>"; };
 		206E901726C2ADFD0050F8E3 /* AlertsCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsCoreData.swift; sourceTree = "<group>"; };
 		20A8413326C02EBB0020DDC0 /* CoreDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewCell.swift; sourceTree = "<group>"; };
 		3A74659220207392C26C7E17 /* Pods_HW_9.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,10 +196,10 @@
 		203A4ECA269F14E600ACE97C /* ToDo_CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				2019E01826C04797004036D5 /* HW_9_CD.xcdatamodeld */,
 				203A4ECF269F154D00ACE97C /* TDCoreDataViewController.swift */,
 				20A8413326C02EBB0020DDC0 /* CoreDataTableViewCell.swift */,
 				206E901726C2ADFD0050F8E3 /* AlertsCoreData.swift */,
+				204E4A5526C4091F00F56BEB /* HW_9.xcdatamodeld */,
 			);
 			path = ToDo_CoreData;
 			sourceTree = "<group>";
@@ -424,7 +424,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				203A4EE4269F17C800ACE97C /* WeatherCollectionViewCellAlam.swift in Sources */,
-				2019E01A26C04797004036D5 /* HW_9_CD.xcdatamodeld in Sources */,
 				20053E3826BEFA990025AEC1 /* AlertsForRealm.swift in Sources */,
 				206E901826C2ADFD0050F8E3 /* AlertsCoreData.swift in Sources */,
 				203A4EE6269F17F300ACE97C /* Alerts.swift in Sources */,
@@ -438,6 +437,7 @@
 				203A4E99269F13B000ACE97C /* AppDelegate.swift in Sources */,
 				203A4ED0269F154D00ACE97C /* TDCoreDataViewController.swift in Sources */,
 				20053E3226B6D5010025AEC1 /* RealmFile.swift in Sources */,
+				204E4A5726C4092000F56BEB /* HW_9.xcdatamodeld in Sources */,
 				203A4ECE269F153B00ACE97C /* TDRealmViewController.swift in Sources */,
 				20053E3426B6D6420025AEC1 /* RealmToDoTableViewCell.swift in Sources */,
 				203A4E9B269F13B000ACE97C /* SceneDelegate.swift in Sources */,
@@ -781,13 +781,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2019E01826C04797004036D5 /* HW_9_CD.xcdatamodeld */ = {
+		204E4A5526C4091F00F56BEB /* HW_9.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				2019E01926C04797004036D5 /* HW_9_CD.xcdatamodel */,
+				204E4A5626C4091F00F56BEB /* HW_9.xcdatamodel */,
 			);
-			currentVersion = 2019E01926C04797004036D5 /* HW_9_CD.xcdatamodel */;
-			path = HW_9_CD.xcdatamodeld;
+			currentVersion = 204E4A5626C4091F00F56BEB /* HW_9.xcdatamodel */;
+			path = HW_9.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

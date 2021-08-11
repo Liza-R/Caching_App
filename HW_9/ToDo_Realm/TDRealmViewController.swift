@@ -13,8 +13,7 @@ let realm = try! Realm()
 class TDRealmViewController: UIViewController {
 
     @IBOutlet weak var todoTable: UITableView!
-    @IBOutlet weak var addButton: UIButton!
-
+    
     var currentTasks: Results<Task>?,
         completedTasks: Results<Task>?
     
