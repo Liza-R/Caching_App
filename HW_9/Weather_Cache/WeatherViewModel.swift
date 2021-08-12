@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import DataCache
 
 protocol uploadWeatherAlamofire{
     func uploadToday(todayAlam: DaysInfo.All_Day_Info, description: String, image: UIImage)
