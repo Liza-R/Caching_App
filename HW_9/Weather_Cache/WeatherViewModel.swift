@@ -9,11 +9,10 @@
 import Foundation
 import UIKit
 import Alamofire
-import DataCache
 
 protocol uploadWeatherAlamofire{
     func uploadToday(todayAlam: DaysInfo.All_Day_Info, description: String, image: UIImage)
-    func uploadFiveDays(todayData: String, allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]], daysForTable: [String])
+    func uploadFiveDays(allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]], daysForTable: [String])
 }
 
 class ViewModelAlamofire{
@@ -39,7 +38,7 @@ class ViewModelAlamofire{
                         icon_today_Alam = j?.icon
                         descript = j?.description ?? "Not Found"
                      }
-  
+                    
                     let url_icon_Al = url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(icon_today_Alam!)")
 
                     AF.request(URL(string: url_icon_Al)!, method: .get).response{ response in
@@ -96,7 +95,7 @@ class ViewModelAlamofire{
                     AF.request(URL(string: url_icon)!, method: .get).response{ response in
                         switch response.result {
                             case .success(let responseData):
-                                iconsAlam.append(UIImage(data: responseData!, scale:1) ?? .checkmark)
+                                iconsAlam.append(UIImage(data: responseData!, scale: 1) ?? .checkmark)
                                 var moving = false
                                 if iconLinkAlam.count - 1 == i{
                                     moving = true
@@ -118,7 +117,7 @@ class ViewModelAlamofire{
                                             }
                                         }
                                     }
-                                    self.weatherDelegateAlam?.uploadFiveDays(todayData: result_Al, allData_: allData_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam, daysForTable: dayForTable_F)
+                                    self.weatherDelegateAlam?.uploadFiveDays(allData_: allData_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam, daysForTable: dayForTable_F)
                                 }
                             case .failure(let error):
                                 print("error--->",error)
