@@ -284,7 +284,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Rp-fC-4ua">
                                         <rect key="frame" x="10" y="64" width="100" height="100"/>
-                                        <color key="backgroundColor" red="0.74901962280000001" green="0.61176472900000001" blue="0.30980393290000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="fhN-YO-Nk7"/>
                                             <constraint firstAttribute="width" constant="100" id="lla-To-VOF"/>
@@ -444,7 +444,7 @@
                                                                                     </label>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.sun" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wxN-IP-Gf6">
                                                                                         <rect key="frame" x="25" y="49" width="45" height="48.5"/>
-                                                                                        <color key="backgroundColor" red="0.68268176700000005" green="0.49550360240000002" blue="0.67324840070000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="45" id="RrI-RE-kYv"/>
                                                                                             <constraint firstAttribute="height" constant="45" id="caL-bQ-ECe"/>
@@ -457,7 +457,7 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
-                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <color key="backgroundColor" red="0.63137257099999999" green="0.49019610879999997" blue="0.63529413940000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 <constraints>
                                                                                     <constraint firstItem="JN1-8Y-ZS3" firstAttribute="top" secondItem="wxN-IP-Gf6" secondAttribute="bottom" constant="5" id="8Y0-4T-gT0"/>
                                                                                     <constraint firstItem="JN1-8Y-ZS3" firstAttribute="leading" secondItem="IJ9-Px-6z4" secondAttribute="leading" constant="5" id="Ajm-bS-P8P"/>

@@ -109,7 +109,7 @@ extension WeatherViewController: uploadWeatherAlamofire{
             feelsL_temp = "Feels like: \(String(describing: Int(todayAlam.main!.feels_like - 273.15)))°C"
      
         DataCache.instance.write(string: description, forKey: "todayDescript")
-        DataCache.instance.write(image: image, forKey: "todayImage", format: .none)
+        DataCache.instance.write(image: image, forKey: "todayImage", format: .jpeg)
         DataCache.instance.write(string: todayInfo, forKey: "todayCityNameTemp")
         DataCache.instance.write(string: "TODAY: \(dateString)", forKey: "today")
         DataCache.instance.write(string: "\(min_temp)", forKey: "todayMinT")
@@ -121,6 +121,7 @@ extension WeatherViewController: uploadWeatherAlamofire{
         self.feels_like_Label_Alam.text = "\(feelsL_temp)"
         self.descript_Label_Alam.text = description
         self.icon_Image_Alam.image = image
+        //self.icon_Image_Alam.backgroundColor = UIColor(red: 0.749, green: 0.612, blue: 0.310, alpha: 1.0)
         self.today_Label_Alam.text = "TODAY: \(dateString)"
         self.temp_Label_Alam.text = "\(todayInfo)"
         weather_Table_Alamofire.reloadData()
