@@ -19,7 +19,8 @@ class WeatherViewController: UIViewController {
         tableRowDataAlam: String = "",
         dayForTableAlam: [String] = [],
         allDataAlam: [String] = [],
-        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[]]
+        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[], [], [], [], []],
+        countInfo = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,20 @@ class WeatherViewController: UIViewController {
         min_temp_Label_alam.text = DataCache.instance.readString(forKey: "todayMinT")
         max_Label_Alam.text = DataCache.instance.readString(forKey: "todayMaxT")
         feels_like_Label_Alam.text = DataCache.instance.readString(forKey: "todayFLT")
+        
+        codFiveDays = DataCache.instance.readString(forKey: "cod") ?? "Cod NF"
+        let aD = DataCache.instance.readArray(forKey: "allData_"),
+            dT = DataCache.instance.readArray(forKey: "daysForTable")
+        dayForTableAlam = dT?.compactMap { String(describing: $0) } ?? [""]
+        allDataAlam = aD?.compactMap { String(describing: $0) } ?? [""]
+        
+
+        for i in 0...4{
+            for j in 0...aD!.count - 1{
+                allWeatherInfo_Alam[i].append(.init(temper_Alam: DataCache.instance.readString(forKey: "temp\(j)") ?? "tNF", icon_Alam: DataCache.instance.readImageForKey(key: "icon\(j)") ?? .checkmark, descript_Alam: DataCache.instance.readString(forKey: "descript\(j)") ?? "desNF", data_Alam: DataCache.instance.readString(forKey: "data\(j)") ?? "dNF", time_Alam: DataCache.instance.readString(forKey: "time\(j)") ?? "timeNF"))
+            }
+        }
+        
     }
     @IBAction func searchButton(_ sender: Any) {
         let alert = Alerts()
@@ -67,6 +82,18 @@ extension WeatherViewController: uploadWeatherAlamofire{
         codFiveDays = cod
         allDataAlam = allData_
         dayForTableAlam = daysForTable
+        DataCache.instance.write(string: cod, forKey: "cod")
+        DataCache.instance.write(array: allData_, forKey: "allData_")
+        DataCache.instance.write(array: daysForTable, forKey: "daysForTable")
+        for i in allWeatherInfo_{
+            for (k, j) in i.enumerated(){
+                DataCache.instance.write(string: j.data_Alam, forKey: "data\(k)")
+                DataCache.instance.write(string: j.descript_Alam, forKey: "descript\(k)")
+                DataCache.instance.write(string: j.temper_Alam, forKey: "temp\(k)")
+                DataCache.instance.write(string: j.time_Alam, forKey: "time\(k)")
+                DataCache.instance.write(image: j.icon_Alam, forKey: "icon\(k)")
+            }
+        }
         weather_Table_Alamofire.reloadData()
     }
     
