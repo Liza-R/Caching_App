@@ -97,7 +97,7 @@ class ViewModelAlamofire{
                             case .success(let responseData):
                                 iconsAlam.append(UIImage(data: responseData!, scale: 1) ?? .checkmark)
                                 var moving = false
-                                if iconLinkAlam.count - 1 == i{
+                                if iconsAlam.count == temp_.count{
                                     moving = true
                                 }
                                 if moving == true{

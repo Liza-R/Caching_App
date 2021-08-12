@@ -38,19 +38,19 @@ class WeatherViewController: UIViewController {
         max_Label_Alam.text = DataCache.instance.readString(forKey: "todayMaxT")
         feels_like_Label_Alam.text = DataCache.instance.readString(forKey: "todayFLT")
         
-        codFiveDays = DataCache.instance.readString(forKey: "cod") ?? "Cod NF"
         let aD = DataCache.instance.readArray(forKey: "allData_"),
             dT = DataCache.instance.readArray(forKey: "daysForTable")
-        dayForTableAlam = dT?.compactMap { String(describing: $0) } ?? [""]
-        allDataAlam = aD?.compactMap { String(describing: $0) } ?? [""]
-        
-
-        for i in 0...4{
-            for j in 0...aD!.count - 1{
-                allWeatherInfo_Alam[i].append(.init(temper_Alam: DataCache.instance.readString(forKey: "temp\(j)") ?? "tNF", icon_Alam: DataCache.instance.readImageForKey(key: "icon\(j)") ?? .checkmark, descript_Alam: DataCache.instance.readString(forKey: "descript\(j)") ?? "desNF", data_Alam: DataCache.instance.readString(forKey: "data\(j)") ?? "dNF", time_Alam: DataCache.instance.readString(forKey: "time\(j)") ?? "timeNF"))
+        if aD?.count ?? 0 > 0 {
+            codFiveDays = DataCache.instance.readString(forKey: "cod") ?? "Cod NF"
+            dayForTableAlam = dT?.compactMap { String(describing: $0) } ?? [""]
+            allDataAlam = aD?.compactMap { String(describing: $0) } ?? [""]
+            
+            for i in 0...4{
+                for j in 0...aD!.count - 1{
+                        allWeatherInfo_Alam[i].append(.init(temper_Alam: DataCache.instance.readString(forKey: "temp\(j)") ?? "tNF", icon_Alam: DataCache.instance.readImageForKey(key: "icon\(j)") ?? .checkmark, descript_Alam: DataCache.instance.readString(forKey: "descript\(j)") ?? "desNF", data_Alam: DataCache.instance.readString(forKey: "data\(j)") ?? "dNF", time_Alam: DataCache.instance.readString(forKey: "time\(j)") ?? "timeNF"))
+                }
             }
         }
-        
     }
     @IBAction func searchButton(_ sender: Any) {
         let alert = Alerts()
